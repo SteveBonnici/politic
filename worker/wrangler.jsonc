@@ -1,0 +1,16 @@
+{
+  // politic-ask: live "ask Claude" proxy for https://stevebonnici.github.io/politic/
+  // Deploy: npx wrangler deploy   Secret: npx wrangler secret put ANTHROPIC_API_KEY
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "politic-ask",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "ALLOWED_ORIGINS": "https://stevebonnici.github.io,http://localhost:8000,http://127.0.0.1:8000"
+  },
+  "ratelimits": [
+    { "name": "RL", "namespace_id": "2026110701", "simple": { "limit": 6, "period": 60 } }
+  ],
+  "observability": { "enabled": true }
+}

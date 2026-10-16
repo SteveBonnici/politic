@@ -59,7 +59,7 @@ p{margin:0}
 @media (max-width:480px){.fields{grid-template-columns:minmax(0,1fr)}}
 .f{display:flex;flex-direction:column;gap:4px;min-width:0}
 .f label{font-size:13px;font-weight:600}
-.f input[type=number],.f input[type=text],.f select{font:inherit;font-family:var(--mono);font-size:15px;padding:8px 10px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);color:var(--ink);width:100%}
+.f input[type=number],.f input[type=text],.f input[type=search],.f select{font:inherit;font-family:var(--mono);font-size:15px;padding:8px 10px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);color:var(--ink);width:100%}
 .f input:focus-visible,.f select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .sub{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-top:4px}
 .checks{display:flex;flex-direction:column;gap:8px}
@@ -117,6 +117,28 @@ th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute
 .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
 .note{font-size:13px;color:var(--muted);border-left:3px solid var(--rule);padding-left:10px}
 footer{font-size:13px;color:var(--muted);max-width:80ch;display:flex;flex-direction:column;gap:6px}
+/* electorate */
+.cands{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.cand{display:grid;grid-template-columns:6px minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--rule);border-radius:6px;padding:8px 10px 8px 0;overflow:hidden;background:var(--card)}
+.cand .swatch{width:6px;align-self:stretch}
+.cand.pick{border-color:var(--accent);background:var(--accent-soft)}
+.cand b{font-family:var(--display)}
+.advice{border:1px solid var(--accent);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;background:var(--accent-soft)}
+.arow{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.arow b{font-family:var(--display);font-size:18px}
+/* issue search + live answers */
+.qres{display:flex;flex-direction:column;gap:12px}
+.qparty{display:flex;flex-direction:column;gap:4px}
+.qparty .ph{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.qparty .ph i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.qparty ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.qparty li .t{font-family:var(--mono);font-size:11px;color:var(--muted);margin-right:6px;text-transform:uppercase;letter-spacing:.04em}
+mark{background:var(--warn);color:#fff;padding:0 2px;border-radius:2px}
+.chipbtn{font:inherit;font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:999px;background:var(--paper);color:var(--muted);border:1px solid var(--rule);cursor:pointer}
+.chipbtn:hover{border-color:var(--accent);color:var(--accent)}
+.askbox{border:1px solid var(--rule);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;background:var(--paper)}
+.answer{font-size:15px;line-height:1.5;display:flex;flex-direction:column;gap:6px}
+.answer ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
 @media (prefers-reduced-motion:reduce){.bar i{transition:none}}
 </style>
 </head>
@@ -126,7 +148,7 @@ footer{font-size:13px;color:var(--muted);max-width:80ch;display:flex;flex-direct
   <header>
     <span class="eyebrow">NZ general election · Saturday 7 November 2026</span>
     <h1>2026 Party Match</h1>
-    <p class="lede">Weigh tax, health, education, environment, social services, housing and superannuation. Set what matters to you and how much, enter your income and assets, and see which party's platform fits you best, what each would cost you in tax, and which likely government suits you.</p>
+    <p class="lede">Weigh tax, health, education, environment, social services, housing and superannuation. Set what matters to you and how much, enter your income and assets, and see which party's platform fits you best, what each would cost you in tax, which likely government suits you, and who is standing in your electorate.</p>
   </header>
 
   <div class="grid">
@@ -135,7 +157,7 @@ footer{font-size:13px;color:var(--muted);max-width:80ch;display:flex;flex-direct
       <section class="panel" aria-labelledby="h-pri">
         <div class="head">
           <h2 id="h-pri">1. Your priorities</h2>
-          <p class="small">Pick the approach you prefer on each issue, then weight it from 0 (ignore) to 5 (decisive).</p>
+          <p class="small">Tick every approach you agree with on each issue (as many as you like), then weight the issue from 0 (ignore) to 5 (decisive). A party scores the average across the pills you tick.</p>
         </div>
         <div id="issues"></div>
       </section>
@@ -186,13 +208,26 @@ footer{font-size:13px;color:var(--muted);max-width:80ch;display:flex;flex-direct
       <section class="panel" aria-labelledby="h-elec">
         <div class="head">
           <h2 id="h-elec">3. Your electorate</h2>
-          <p class="small">You get two votes. Your <b>party vote</b> decides how many seats each party gets, so it is what this tool scores. Your <b>electorate vote</b> picks your local MP.</p>
+          <p class="small">You get two votes. Your <b>party vote</b> decides how many seats each party gets, so it is what this tool scores. Your <b>electorate vote</b> picks your local MP. Pick your electorate to see who is standing and where each vote does the most.</p>
         </div>
-        <div class="f"><label for="addr">Your address</label><input id="addr" type="text" placeholder="e.g. 12 Example Street, Remuera" autocomplete="street-address"></div>
-        <p class="small" id="elecOut">This page can't look up electorates itself and doesn't store or send your address. Use the official finder at <a href="https://vote.nz" target="_blank" rel="noopener">vote.nz</a> to see your electorate and candidates.</p>
         <div class="checks">
           <label><input type="checkbox" id="maoriRoll"> I'm on the Māori roll</label>
         </div>
+        <div class="f"><label for="elec">Electorate</label><select id="elec"><option value="">Loading electorates…</option></select></div>
+        <p class="small">Not sure which electorate you're in? Check at <a href="https://vote.nz" target="_blank" rel="noopener">vote.nz</a>.</p>
+        <div id="elecOut"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="h-q">
+        <div class="head">
+          <h2 id="h-q">4. Research an issue</h2>
+          <p class="small">Type something that matters to you. The page searches its own policy notes instantly; <b>Ask Claude</b> searches the web live for the latest on that issue.</p>
+        </div>
+        <div class="f"><label for="q">Issue</label><input id="q" type="search" placeholder="e.g. dental, gangs, immigration, student loans, ferries" autocomplete="off"></div>
+        <div class="btns"><button type="button" id="btnAsk" class="primary">Ask Claude (live)</button><button type="button" id="btnQClear">Clear</button></div>
+        <div class="chips" id="qchips"></div>
+        <div id="askout" hidden></div>
+        <div id="qout"></div>
       </section>
     </div>
 
@@ -230,9 +265,9 @@ footer{font-size:13px;color:var(--muted);max-width:80ch;display:flex;flex-direct
   </div>
 
   <footer>
-    <p><b>How this works.</b> Each party gets a 0–100 score per issue for how closely its 2026 platform matches the approach you picked. These scores are judgements made from party policy documents, fiscal plans and news coverage as at 17 October 2026. Your tax score comes from the calculations shown. The overall match is the weighted average.</p>
+    <p><b>How this works.</b> Each party gets a 0–100 score per issue for how closely its 2026 platform matches the approaches you ticked (averaged when you tick several). These scores are judgements made from party policy documents, fiscal plans and news coverage as at 17 October 2026. Your tax score comes from the calculations shown. The overall match is the weighted average.</p>
     <p>This is a model, not advice. Wealth-tax rules for trusts and private businesses have not been published by the Greens or Te Pāti Māori, and NZ First's $14k tax-free band is unconfirmed for 2026. Check your position with a tax adviser.</p>
-    <p>Sources: party websites and fiscal plans, KPMG and Deloitte election tax trackers, RNZ, 1News, ODT, The Spinoff, interest.co.nz, Waatea.</p>
+    <p>Sources: party websites and fiscal plans, KPMG and Deloitte election tax trackers, RNZ, 1News, ODT, The Spinoff, interest.co.nz, Waatea; electorate candidates from the Electoral Commission's 2026 nominations. Live answers come from Claude with web search and can be wrong; check the party's own site before relying on them.</p>
   </footer>
 </div>
 
@@ -297,34 +332,62 @@ const P = [
 ];
 
 const ISSUES = [
- {id:'tax',label:'Tax on my household',w:3,stances:[{id:'cost',label:'Lowest tax for us'}],help:'Scored from your figures below.'},
+ {id:'tax',label:'Tax on my household',w:3,help:'"Lowest tax for us" is scored from your figures below; the other pills from party policy.',stances:[
+   {id:'cost',label:'Lowest tax for us'},
+   {id:'nonew',label:'No new taxes',s:{nat:1,lab:.3,grn:0,act:1,nzf:.8,top:0,tpm:0}},
+   {id:'cgt',label:'Capital gains tax',s:{nat:0,lab:1,grn:.9,act:0,nzf:0,top:.6,tpm:.8}},
+   {id:'wealth',label:'Tax wealth and high incomes more',s:{nat:0,lab:.4,grn:1,act:0,nzf:0,top:.7,tpm:1}},
+   {id:'lowinc',label:'Tax-free band for low incomes',s:{nat:0,lab:.1,grn:.9,act:.1,nzf:.7,top:.3,tpm:1}}]},
  {id:'health',label:'Health',w:3,stances:[
    {id:'access',label:'Cheaper GP and medicines',s:{nat:.4,lab:1,grn:.95,act:.3,nzf:.2,top:.6,tpm:.75}},
    {id:'medicines',label:'More medicines and screening',s:{nat:1,lab:.6,grn:.5,act:.9,nzf:.2,top:.5,tpm:.3}},
-   {id:'longterm',label:'Long-term funding and prevention',s:{nat:.5,lab:.6,grn:.6,act:.4,nzf:.55,top:1,tpm:.5}}]},
+   {id:'longterm',label:'Long-term funding and prevention',s:{nat:.5,lab:.6,grn:.6,act:.4,nzf:.55,top:1,tpm:.5}},
+   {id:'dental',label:'Free or cheaper dental',s:{nat:.2,lab:.5,grn:1,act:.1,nzf:.2,top:.5,tpm:.7}},
+   {id:'workforce',label:'More doctors and nurses',s:{nat:.7,lab:.9,grn:.7,act:.5,nzf:.6,top:.6,tpm:.5}},
+   {id:'mental',label:'Mental health',s:{nat:.6,lab:.7,grn:.8,act:.3,nzf:.4,top:.7,tpm:.7}},
+   {id:'maorihealth',label:'Māori-led health services',s:{nat:0,lab:.5,grn:.8,act:0,nzf:0,top:.4,tpm:1}}]},
  {id:'education',label:'Education',w:4,stances:[
    {id:'standards',label:'Raise achievement',s:{nat:1,lab:.4,grn:.2,act:.8,nzf:.4,top:.4,tpm:.2}},
    {id:'costs',label:'Cut costs for families',s:{nat:.6,lab:1,grn:1,act:.3,nzf:.35,top:.5,tpm:.8}},
    {id:'early',label:'Quality early childhood',s:{nat:.4,lab:.4,grn:.9,act:.2,nzf:.1,top:1,tpm:.5}},
-   {id:'choice',label:'Choice and discipline',s:{nat:.6,lab:.2,grn:.1,act:1,nzf:.5,top:.2,tpm:.1}}]},
+   {id:'choice',label:'Choice and discipline',s:{nat:.6,lab:.2,grn:.1,act:1,nzf:.5,top:.2,tpm:.1}},
+   {id:'lunches',label:'School lunches for all',s:{nat:.5,lab:.8,grn:1,act:.1,nzf:.3,top:.6,tpm:.9}},
+   {id:'tertiary',label:'Cheaper study, less student debt',s:{nat:.4,lab:.7,grn:1,act:.1,nzf:.2,top:.8,tpm:.7}},
+   {id:'trades',label:'Trades and apprenticeships',s:{nat:.7,lab:.9,grn:.4,act:.5,nzf:.6,top:.4,tpm:.4}},
+   {id:'reo',label:'Te reo and Māori education',s:{nat:.1,lab:.5,grn:.8,act:0,nzf:0,top:.5,tpm:1}}]},
  {id:'environment',label:'Environment',w:5,stances:[
    {id:'ambitious',label:'Cut emissions hard, protect nature',s:{nat:.3,lab:.5,grn:1,act:.05,nzf:.05,top:.85,tpm:.75}},
    {id:'energy',label:'Clean energy, keep costs down',s:{nat:.9,lab:.8,grn:.6,act:.4,nzf:.4,top:.6,tpm:.5}},
-   {id:'economy',label:'Economy first, looser climate rules',s:{nat:.6,lab:.2,grn:0,act:1,nzf:.9,top:.1,tpm:.1}}]},
+   {id:'economy',label:'Economy first, looser climate rules',s:{nat:.6,lab:.2,grn:0,act:1,nzf:.9,top:.1,tpm:.1}},
+   {id:'farming',label:'Keep farming out of emissions pricing',s:{nat:.8,lab:.6,grn:0,act:1,nzf:1,top:.3,tpm:.3}},
+   {id:'oceans',label:'Protect oceans, no seabed mining',s:{nat:.1,lab:.5,grn:1,act:0,nzf:0,top:.9,tpm:1}},
+   {id:'transport',label:'Public transport and rail',s:{nat:.4,lab:.8,grn:1,act:.1,nzf:.3,top:.6,tpm:.6}},
+   {id:'resilience',label:'Climate adaptation and resilience',s:{nat:.6,lab:.7,grn:.9,act:.2,nzf:.3,top:.7,tpm:.8}}]},
  {id:'social',label:'Social services',w:5,stances:[
    {id:'broad',label:'Broad safety net for everyone',s:{nat:.2,lab:.6,grn:1,act:.05,nzf:.45,top:.9,tpm:.85}},
    {id:'targeted',label:'Targeted help for those in need',s:{nat:.6,lab:.7,grn:.5,act:.5,nzf:.8,top:.4,tpm:.6}},
-   {id:'self',label:'Work obligations, lower spending',s:{nat:.8,lab:.2,grn:0,act:1,nzf:.5,top:.2,tpm:0}}]},
+   {id:'self',label:'Work obligations, lower spending',s:{nat:.8,lab:.2,grn:0,act:1,nzf:.5,top:.2,tpm:0}},
+   {id:'families',label:'Bigger family payments',s:{nat:.3,lab:.6,grn:.9,act:.1,nzf:.9,top:.7,tpm:.7}},
+   {id:'ubi',label:'Universal basic income',s:{nat:0,lab:.1,grn:.5,act:0,nzf:0,top:1,tpm:.3}},
+   {id:'disability',label:'Disability support',s:{nat:.4,lab:.7,grn:.9,act:.2,nzf:.3,top:.8,tpm:.6}},
+   {id:'migrants',label:'Limit benefits for new migrants',s:{nat:.5,lab:.1,grn:0,act:1,nzf:.9,top:.1,tpm:0}}]},
  {id:'housing',label:'Housing',w:3,stances:[
    {id:'public',label:'Build public housing, protect renters',s:{nat:.3,lab:.85,grn:1,act:.1,nzf:.2,top:.5,tpm:.7}},
    {id:'firsthome',label:'Help first-home buyers, lower prices',s:{nat:.8,lab:.5,grn:.5,act:.4,nzf:.3,top:.9,tpm:.5}},
-   {id:'private',label:'Back landlords and private building',s:{nat:.8,lab:.3,grn:0,act:1,nzf:.5,top:.2,tpm:.1}}]},
+   {id:'private',label:'Back landlords and private building',s:{nat:.8,lab:.3,grn:0,act:1,nzf:.5,top:.2,tpm:.1}},
+   {id:'renters',label:'Rent controls and tenant rights',s:{nat:0,lab:.5,grn:1,act:0,nzf:.1,top:.4,tpm:.7}},
+   {id:'supply',label:'Free up land, build more',s:{nat:1,lab:.6,grn:.4,act:.8,nzf:.5,top:.8,tpm:.3}},
+   {id:'seniors',label:'Housing for seniors, granny flats',s:{nat:.7,lab:.4,grn:.4,act:.4,nzf:1,top:.4,tpm:.3}},
+   {id:'maoriland',label:'Build on Māori land',s:{nat:.2,lab:.5,grn:.7,act:.1,nzf:.1,top:.4,tpm:1}}]},
  {id:'super',label:'Superannuation',w:2,stances:[
    {id:'keep',label:'Keep super at 65 for everyone',s:{nat:.75,lab:1,grn:1,act:.1,nzf:.8,top:.5,tpm:.8}},
    {id:'sustain',label:'Raise the age or target it',s:{nat:.5,lab:.1,grn:.1,act:1,nzf:.3,top:.7,tpm:0}},
-   {id:'kiwisaver',label:'Bigger compulsory KiwiSaver',s:{nat:.9,lab:.9,grn:.3,act:.4,nzf:.9,top:.9,tpm:.2}}]},
+   {id:'kiwisaver',label:'Bigger compulsory KiwiSaver',s:{nat:.9,lab:.9,grn:.3,act:.4,nzf:.9,top:.9,tpm:.2}},
+   {id:'residency',label:'Tighter residency rules for super',s:{nat:.3,lab:.2,grn:.7,act:.4,nzf:1,top:.2,tpm:.1}},
+   {id:'villages',label:'Regulate retirement villages',s:{nat:.3,lab:.7,grn:1,act:.1,nzf:.5,top:.5,tpm:.5}},
+   {id:'superfund',label:'Keep paying into the Super Fund',s:{nat:.8,lab:.9,grn:.8,act:.1,nzf:.7,top:.6,tpm:.6}}]},
 ];
-const DEFAULT_STANCE = {tax:'cost',health:'access',education:'costs',environment:'ambitious',social:'broad',housing:'public',super:'keep'};
+const DEFAULT_STANCE = {tax:['cost'],health:['access'],education:['costs'],environment:['ambitious'],social:['broad'],housing:['public'],super:['keep']};
 
 const $ = id => document.getElementById(id);
 const INF = Infinity;
@@ -344,10 +407,8 @@ function plain(v){const a=Math.abs(v);return (v<0?'−':'')+'$'+(a>=1e6?(a/1e6).
 const issuesEl=$('issues');
 ISSUES.forEach(is=>{
   const d=document.createElement('div');d.className='issue';
-  let seg='';
-  if(is.stances.length>1){seg='<div class="seg" role="radiogroup" aria-label="'+is.label+' approach">'+is.stances.map(s=>
-    `<label><input type="radio" name="st-${is.id}" id="st-${is.id}-${s.id}" value="${s.id}" ${DEFAULT_STANCE[is.id]===s.id?'checked':''}><span>${s.label}</span></label>`).join('')+'</div>'}
-  else seg='<p class="small">'+is.help+'</p>';
+  const seg='<div class="seg" role="group" aria-label="'+is.label+' approaches">'+is.stances.map(s=>
+    `<label><input type="checkbox" name="st-${is.id}" id="st-${is.id}-${s.id}" value="${s.id}" ${DEFAULT_STANCE[is.id].includes(s.id)?'checked':''}><span>${s.label}</span></label>`).join('')+'</div>'+(is.help?'<p class="small">'+is.help+'</p>':'');
   d.innerHTML=`<div class="issue-top"><h3>${is.label}</h3><div class="weight"><label class="small" for="w-${is.id}">Weight</label><input type="range" id="w-${is.id}" min="0" max="5" step="1" value="${is.w}"><output id="o-${is.id}">${is.w} / 5</output></div></div>${seg}`;
   issuesEl.appendChild(d);
 });
@@ -411,8 +472,10 @@ function render(){
     ISSUES.forEach(is=>{
       const w=+$('w-'+is.id).value;
       let s;
-      if(is.id==='tax')s=T[p.id].score;
-      else{const sel=document.querySelector(`input[name="st-${is.id}"]:checked`);const st=is.stances.find(x=>x.id===(sel?sel.value:DEFAULT_STANCE[is.id]));s=st.s[p.id]}
+      const sel=[...document.querySelectorAll(`input[name="st-${is.id}"]:checked`)].map(x=>x.value);
+      const sts=is.stances.filter(x=>sel.includes(x.id));
+      if(!sts.length){per[is.id]=null;return}
+      s=sts.reduce((a,st)=>a+(st.id==='cost'?T[p.id].score:st.s[p.id]),0)/sts.length;
       per[is.id]=s;sw+=w;ss+=w*s;
     });
     return {...p,per,score:sw?ss/sw:0,tax:T[p.id]};
@@ -428,7 +491,7 @@ function render(){
   // rank
   $('rank').innerHTML=res.map(p=>{
     const t=p.tax.total,cls=t>500?'up':t<-500?'down':'flat';
-    const chips=ISSUES.filter(is=>+$('w-'+is.id).value>0).map(is=>`<span class="chip">${(is.id==='super'?'Super':is.label.split(' ')[0])} ${Math.round(p.per[is.id]*100)}</span>`).join('');
+    const chips=ISSUES.filter(is=>+$('w-'+is.id).value>0&&p.per[is.id]!=null).map(is=>`<span class="chip">${(is.id==='super'?'Super':is.label.split(' ')[0])} ${Math.round(p.per[is.id]*100)}</span>`).join('');
     const lines=p.tax.lines.map(l=>`<tr><td>${l[0]}</td><td class="num ${l[1]>500?'up':l[1]<-500?'down':'flat'}">${money(l[1])}</td></tr>`).join('');
     return `<details class="party"><summary><span class="swatch" style="background:${p.color}"></span>
       <div class="pmain"><div class="pname"><strong>${p.name}</strong><span class="bloc">${p.poll}% in poll · ${p.bloc==='left'?'Labour-led bloc':'National-led bloc'}</span></div>
@@ -455,10 +518,123 @@ function render(){
   const allRows=[...P].sort((a,b)=>T[a.id].total-T[b.id].total).map(p=>{const t=T[p.id].total;return `<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${p.color};margin-right:6px"></span>${p.name}</td><td class="num ${t>500?'up':t<-500?'down':'flat'}">${money(t)}</td><td class="small">${T[p.id].onSale?'Paid when property sells':(p.id==='top'?'Phased in over ~10 years':'Each year')}</td></tr>`}).join('');
   $('taxtbl').innerHTML=`<thead><tr><th>Party</th><th class="num">Change / yr</th><th>When</th></tr></thead><tbody>${allRows}</tbody>`;
 
-  // electorate note
-  const maori=$('maoriRoll').checked, addr=$('addr').value.trim();
-  $('elecOut').innerHTML=(addr?'Look up <b>'+addr.replace(/[<>&]/g,'')+'</b> ':'Look up your address ')+'with the official finder at <a href="https://vote.nz" target="_blank" rel="noopener">vote.nz</a> to see your electorate and candidates. This page can\'t look electorates up itself and doesn\'t store or send your address.'+(maori?' On the Māori roll you vote in one of seven Māori electorates, where Te Pāti Māori and Labour compete directly; an electorate win lets a party enter Parliament even under 5%.':' An electorate vote matters most where a small party needs a local seat to get in.');
+  lastRes=res;renderElec();renderSearch();
 }
+
+/* ---------- electorates, issue search, live answers (data from data/*.json) ---------- */
+const ASK_URL='https://politic-ask.steve-b8b.workers.dev/ask';
+const BLOC={nat:'right',act:'right',nzf:'right',lab:'left',grn:'left',top:'left',tpm:'left'};
+const PNAME=Object.fromEntries(P.map(p=>[p.id,p.name]));
+const PCOL=Object.fromEntries(P.map(p=>[p.id,p.color]));
+const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmtN=n=>Number(n).toLocaleString('en-NZ');
+const pname=c=>c.party==='other'?(c.partyName||'Independent'):(PNAME[c.party]||c.party);
+let ELEC=null,ELEC_ERR=false,POL=null,lastRes=null,elecMode=null;
+
+fetch('data/electorates.json').then(r=>r.ok?r.json():Promise.reject(r.status)).then(d=>{ELEC=d;buildElecSelect();renderElec()}).catch(()=>{ELEC_ERR=true;renderElec()});
+fetch('data/policies.json').then(r=>r.ok?r.json():Promise.reject(r.status)).then(d=>{POL=d;buildChips();renderSearch()}).catch(()=>{});
+
+function buildElecSelect(){
+  const sel=$('elec');const mode=$('maoriRoll').checked?'maori':'general';
+  if(mode===elecMode)return;elecMode=mode;
+  const list=ELEC.electorates.filter(e=>e.type===mode);
+  const regions=[...new Set(list.map(e=>e.region))];
+  let keep='';try{keep=localStorage.getItem('pm-elec-'+mode)||''}catch(e){}
+  sel.innerHTML='<option value="">Choose your electorate…</option>'+regions.map(r=>`<optgroup label="${esc(r)}">`+list.filter(e=>e.region===r).map(e=>`<option value="${esc(e.name)}">${esc(e.name)}</option>`).join('')+'</optgroup>').join('');
+  if([...sel.options].some(o=>o.value===keep))sel.value=keep;
+}
+
+function renderElec(){
+  const out=$('elecOut');
+  if(!ELEC){out.innerHTML=ELEC_ERR?'<p class="small">Electorate and candidate data is not available yet.</p>':'<p class="small">Loading electorates…</p>';return}
+  buildElecSelect();
+  const name=$('elec').value;try{localStorage.setItem('pm-elec-'+elecMode,name)}catch(e){}
+  const e=ELEC.electorates.find(x=>x.name===name);
+  const status=ELEC.candidatesStatus?`<p class="small">Candidate list: ${esc(ELEC.candidatesStatus)}.</p>`:'';
+  if(!e){out.innerHTML=`<p class="small">Pick your electorate to see the candidates and a suggestion for each of your two votes.</p>${status}`;return}
+  const res=lastRes||[];const top=res[0];const myBloc=top?BLOC[top.id]:null;
+  const score=id=>{const r=res.find(x=>x.id===id);return r?Math.round(r.score*100):null};
+  const last=e.last;const fr=[];if(last){if(last.winner)fr.push(last.winner);if(last.runnerUp&&last.runnerUp!==last.winner)fr.push(last.runnerUp)}
+  const has=id=>e.candidates.some(c=>c.party===id);const cand=id=>e.candidates.find(c=>c.party===id);
+  const safe=last&&last.margin>=8000;
+  let who=null,why='';
+  if(!top)why='Set your priorities to get a suggestion.';
+  else if(!last){who=has(top.id)?cand(top.id):null;why=`No previous result on these boundaries, so there is no clear front-runner. ${who?`Voting for the ${PNAME[top.id]} candidate is the straightforward choice.`:`${PNAME[top.id]} has no candidate here, so pick the candidate from your preferred side you rate most.`}`}
+  else{
+    const frHere=fr.filter(has);
+    const lifeline=frHere.find(id=>['act','tpm','top','nzf'].includes(id)&&P.find(p=>p.id===id).poll<6.5);
+    if(frHere.includes(top.id)){who=cand(top.id);why=`${PNAME[top.id]} is a genuine contender here (${last.winner===top.id?'held the seat':'came second'} in ${last.year}${last.notional?' on the notional result':''}, margin ${fmtN(last.margin)}). Give ${esc(who.name)} your electorate vote and ${PNAME[top.id]} your party vote.`}
+    else if(lifeline&&BLOC[lifeline]===myBloc){who=cand(lifeline);why=`${PNAME[lifeline]} is polling near or under 5%, so winning this seat is how it stays in Parliament and brings its list MPs with it. ${PNAME[top.id]} is not a contender here, so if you want the ${myBloc==='left'?'Labour-led':'National-led'} side to govern, the tactical electorate vote is ${esc(who.name)}.`}
+    else{const blocFr=frHere.find(id=>BLOC[id]===myBloc);
+      if(blocFr){who=cand(blocFr);why=`${PNAME[top.id]} ${has(top.id)?'has a candidate here but is not a contender':'has no candidate here'}. ${safe?`This is a safe seat (margin ${fmtN(last.margin)}), so your electorate vote is unlikely to change who wins; vote for whoever you rate. `:''}The contender from your side is ${esc(who.name)} (${PNAME[blocFr]}). Your party vote still goes to ${PNAME[top.id]}; under MMP that is the vote that sets the shape of Parliament.`}
+      else{who=has(top.id)?cand(top.id):null;why=`Neither contender here is from your preferred side${who?`, so an electorate vote for ${esc(who.name)} (${PNAME[top.id]}) is a statement rather than a swing`:''}. Your party vote for ${PNAME[top.id]} is the one that counts.`}
+    }
+  }
+  const inc=e.incumbent?`${esc(e.incumbent.name)} (${e.incumbent.party==='other'?esc(e.incumbent.partyName||''):PNAME[e.incumbent.party]||esc(e.incumbent.party)})`:'none (new or vacant seat)';
+  const lastTxt=last?`${PNAME[last.winner]||esc(last.winner)} won by ${fmtN(last.margin)} over ${PNAME[last.runnerUp]||esc(last.runnerUp)} in ${last.year}${last.notional?' (notional, on the new boundaries)':''}`:'no previous result on these boundaries';
+  const cards=e.candidates.map(c=>{const sc=score(c.party);const pick=who&&who.name===c.name;
+    return `<li class="cand ${pick?'pick':''}"><span class="swatch" style="background:${PCOL[c.party]||'#9AA5A0'}"></span><div><b>${esc(c.name)}</b><span class="small"> · ${esc(pname(c))}${sc!==null?` · ${sc}% match`:''}</span></div>${pick?'<span class="chip">Suggested</span>':''}</li>`}).join('');
+  out.innerHTML=`<p class="small"><b>${esc(e.name)}</b> · ${e.type==='maori'?'Māori electorate':'General electorate'} · Incumbent: ${inc}. Last result: ${lastTxt}.${e.note?' '+esc(e.note):''}</p>
+   <ul class="cands">${cards||'<li class="small">No candidates listed yet.</li>'}</ul>
+   <div class="advice"><div class="arow"><span class="eyebrow">Party vote</span><b>${top?PNAME[top.id]:'—'}</b></div><div class="arow"><span class="eyebrow">Electorate vote</span><b>${who?esc(who.name)+' · '+esc(pname(who)):'your call'}</b></div><p class="small">${why}</p></div>${status}`;
+}
+
+const FIELD={tax:'Tax',health:'Health',education:'Education',environment:'Environment',social:'Social services',housing:'Housing',super:'Superannuation'};
+function corpus(){
+  const rows=[];
+  P.forEach(p=>{for(const k in FIELD)rows.push({party:p.id,topic:FIELD[k],text:p[k],kw:[]})});
+  if(POL)POL.topics.forEach(t=>{for(const id in t.parties){const tx=t.parties[id];if(tx&&!/^No published/i.test(tx))rows.push({party:id,topic:t.label,text:tx,kw:t.keywords||[]})}});
+  return rows;
+}
+function buildChips(){
+  if(!POL)return;
+  $('qchips').innerHTML=POL.topics.slice(0,16).map(t=>`<button type="button" class="chipbtn" data-q="${esc((t.keywords||[t.label])[0])}">${esc(t.label)}</button>`).join('');
+}
+$('qchips').addEventListener('click',ev=>{const b=ev.target.closest('button[data-q]');if(!b)return;$('q').value=b.dataset.q;renderSearch()});
+const stem=w=>w.toLowerCase().replace(/(ies|es|s)$/,'');
+function hl(text,terms){let h=esc(text);terms.forEach(t=>{if(t.length<3)return;h=h.replace(new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'[a-z]*)','gi'),'<mark>$1</mark>')});return h}
+function renderSearch(){
+  const raw=$('q').value.trim();const out=$('qout');
+  if(raw.length<2){out.innerHTML='';return}
+  const terms=raw.toLowerCase().split(/\s+/).filter(Boolean).map(stem).filter(t=>t.length>=2);
+  const hit=str=>{const h=str.toLowerCase();return terms.some(t=>h.includes(t))};
+  const topicHits=POL?POL.topics.filter(t=>hit(t.label)||(t.keywords||[]).some(k=>hit(k)||terms.some(x=>stem(k).includes(x)))).map(t=>t.label):[];
+  const rows=corpus().filter(r=>topicHits.includes(r.topic)||hit(r.text));
+  const order=(lastRes||P).map(p=>p.id);
+  const byParty=order.map(id=>({id,rows:rows.filter(r=>r.party===id)})).filter(x=>x.rows.length);
+  const missing=order.filter(id=>!byParty.some(x=>x.id===id));
+  if(!byParty.length){out.innerHTML=`<p class="small">Nothing on "${esc(raw)}" in the page's notes. Try a broader word, or use <b>Ask Claude</b> for a live answer.</p>`;return}
+  out.innerHTML='<div class="qres">'+byParty.map(x=>{const sc=lastRes?Math.round((lastRes.find(r=>r.id===x.id)||{score:0}).score*100):null;
+    return `<div class="qparty"><div class="ph"><i style="background:${PCOL[x.id]}"></i>${PNAME[x.id]}${sc!==null?`<span class="small">${sc}% match</span>`:''}</div><ul>${x.rows.map(r=>`<li><span class="t">${esc(r.topic)}</span>${hl(r.text,terms)}</li>`).join('')}</ul></div>`}).join('')+'</div>'+
+    (missing.length?`<p class="small">No published 2026 position found for: ${missing.map(id=>PNAME[id]).join(', ')}.</p>`:'');
+}
+function mdLite(t){
+  const lines=esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').split(/\r?\n/);let html='',inList=false;
+  for(const ln of lines){const m=ln.match(/^\s*(?:[-*•]|\d+[.)])\s+(.*)$/);
+    if(m){if(!inList){html+='<ul>';inList=true}html+='<li>'+m[1]+'</li>'}
+    else{if(inList){html+='</ul>';inList=false}if(ln.trim())html+='<p>'+ln.replace(/^#+\s*/,'')+'</p>'}}
+  if(inList)html+='</ul>';return html;
+}
+async function askLive(){
+  const q=$('q').value.trim();const out=$('askout');
+  if(q.length<3){out.hidden=false;out.innerHTML='<p class="small">Type an issue first.</p>';return}
+  out.hidden=false;out.innerHTML='<div class="askbox"><p class="small">Searching the web and reading the party sites… usually 20–40 seconds.</p></div>';
+  const btn=$('btnAsk');btn.disabled=true;
+  try{
+    const top=lastRes&&lastRes[0]?PNAME[lastRes[0].id]:null;
+    const pri=ISSUES.filter(is=>+$('w-'+is.id).value>=4).map(is=>is.label);
+    const r=await fetch(ASK_URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:q,electorate:$('elec').value||null,priorities:pri,topMatch:top})});
+    let d={};try{d=await r.json()}catch(e){}
+    if(!r.ok||d.error)throw new Error(d.error||('HTTP '+r.status));
+    out.innerHTML=`<div class="askbox"><span class="eyebrow">Live answer · ${esc(q)}</span><div class="answer">${mdLite(d.answer||'')}</div>`+
+      (d.sources&&d.sources.length?`<p class="small">Sources: ${d.sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title||s.url)}</a>`).join(' · ')}</p>`:'')+
+      `<p class="small">Answered by Claude with web search on ${new Date().toLocaleDateString('en-NZ')}. It can be wrong; check anything that matters on the party's own site.</p></div>`;
+  }catch(e){out.innerHTML=`<div class="askbox"><p class="small">Couldn't get a live answer (${esc(e.message)}). The instant search above still works.</p></div>`}
+  finally{btn.disabled=false}
+}
+$('btnAsk').addEventListener('click',askLive);
+$('q').addEventListener('keydown',ev=>{if(ev.key==='Enter'){ev.preventDefault();askLive()}});
+$('btnQClear').addEventListener('click',()=>{$('q').value='';$('askout').hidden=true;$('askout').innerHTML='';renderSearch()});
 
 const EMPTY={incA:0,incB:0,coProfit:0,adults:2,home:0,holiday:0,resInv:0,commercial:0,debtCom:0,debtRes:0,biz:0,turnover:'under',growth:4,rate:5.5,landShare:60,basis:'household',trust:false,holidayRented:false,holidayVacant:false,tpmHome:false};
 function setFin(v){for(const k in v){const el=$(k);if(!el)continue;if(el.type==='checkbox')el.checked=v[k];else el.value=v[k]}render()}
