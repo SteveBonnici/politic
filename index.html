@@ -267,7 +267,7 @@ mark{background:var(--warn);color:#fff;padding:0 2px;border-radius:2px}
 
   <footer>
     <p><b>How this works.</b> Each party gets a 0–100 score per issue for how closely its 2026 platform matches the approaches you ticked (averaged when you tick several). These scores are judgements made from party policy documents, fiscal plans and news coverage as at 17 October 2026. Your tax score comes from the calculations shown. The overall match is the weighted average.</p>
-    <p id="privacy"><b>Your privacy.</b> This is a plain web page with no accounts, no database and no analytics. Your income, assets, priorities and electorate are only ever held in your browser's memory while the page is open, and your electorate choice in your browser's own storage so it is still selected next time. Nothing is uploaded, and the site owner cannot see what you enter. The one exception is the <b>Ask Claude</b> button: it sends the question you typed, your electorate name, the issues you weighted highest and the name of your top-match party to a small relay that forwards them to Anthropic's Claude service to search the web and write the answer. It never sends your money figures, and the relay keeps no record of the question. Opening the page in a private window leaves no trace at all.</p>
+    <p id="privacy"><b>Your privacy.</b> This is a plain web page with no accounts, no database and no analytics. Your income, assets, priorities and electorate are only ever held in your browser's memory while the page is open, and your electorate choice in your browser's own storage so it is still selected next time. If you open the page through a personal link that carries figures after the # sign, those figures are remembered in your browser too; the part of a link after # is never sent to any server, and Clear forgets them. Nothing is uploaded, and the site owner cannot see what you enter. The one exception is the <b>Ask Claude</b> button: it sends the question you typed, your electorate name, the issues you weighted highest and the name of your top-match party to a small relay that forwards them to Anthropic's Claude service to search the web and write the answer. It never sends your money figures, and the relay keeps no record of the question. Opening the page in a private window leaves no trace at all.</p>
     <p>This is a model, not advice. Wealth-tax rules for trusts and private businesses have not been published by the Greens or Te Pāti Māori, and NZ First's $14k tax-free band is unconfirmed for 2026. Check your position with a tax adviser.</p>
     <p>Sources: party websites and fiscal plans, KPMG and Deloitte election tax trackers, RNZ, 1News, ODT, The Spinoff, interest.co.nz, Waatea; electorate candidates from the Electoral Commission's 2026 nominations. Live answers come from Claude with web search and can be wrong; check the party's own site before relying on them.</p>
   </footer>
@@ -642,10 +642,20 @@ $('btnQClear').addEventListener('click',()=>{$('q').value='';$('askout').hidden=
 
 const EMPTY={incA:0,incB:0,coProfit:0,adults:2,home:0,holiday:0,resInv:0,commercial:0,debtCom:0,debtRes:0,biz:0,turnover:'under',growth:4,rate:5.5,landShare:60,basis:'household',trust:false,holidayRented:false,holidayVacant:false,tpmHome:false};
 function setFin(v){for(const k in v){const el=$(k);if(!el)continue;if(el.type==='checkbox')el.checked=v[k];else el.value=v[k]}render()}
-$('btnClear').addEventListener('click',()=>setFin(EMPTY));
+$('btnClear').addEventListener('click',()=>{try{localStorage.removeItem('pm-fin')}catch(e){}setFin(EMPTY)});
+/* Personal link: #f=incA:750,home:7,trust:1,... fills the finance fields and remembers them in THIS browser only.
+   The part of a URL after # is never sent to the server. */
+function loadPersonal(){
+  let v=null;const h=location.hash;
+  if(h.startsWith('#f=')){v={};h.slice(3).split(',').forEach(kv=>{const i=kv.indexOf(':');if(i<0)return;const k=kv.slice(0,i),val=decodeURIComponent(kv.slice(i+1));if(!(k in EMPTY))return;v[k]=(typeof EMPTY[k]==='boolean')?val==='1':(val!==''&&!isNaN(+val)?+val:val)});
+    try{localStorage.setItem('pm-fin',JSON.stringify(v))}catch(e){}}
+  else{try{const st=localStorage.getItem('pm-fin');if(st)v=JSON.parse(st)}catch(e){}}
+  if(v)setFin({...EMPTY,...v});
+}
 document.addEventListener('input',render);
 document.addEventListener('change',render);
 render();
+loadPersonal();
 </script>
 
 </body>
