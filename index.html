@@ -532,6 +532,7 @@ const fmtN=n=>Number(n).toLocaleString('en-NZ');
 const pname=c=>c.party==='other'?(c.partyName||'Independent'):(PNAME[c.party]||c.party);
 let ELEC=null,ELEC_ERR=false,POL=null,lastRes=null,elecMode=null;
 
+try{if(new URLSearchParams(location.search).get('maori')==='1')$('maoriRoll').checked=true}catch(e){}
 fetch('data/electorates.json').then(r=>r.ok?r.json():Promise.reject(r.status)).then(d=>{ELEC=d;buildElecSelect();renderElec()}).catch(()=>{ELEC_ERR=true;renderElec()});
 fetch('data/policies.json').then(r=>r.ok?r.json():Promise.reject(r.status)).then(d=>{POL=d;buildChips();renderSearch()}).catch(()=>{});
 
@@ -539,8 +540,9 @@ function buildElecSelect(){
   const sel=$('elec');const mode=$('maoriRoll').checked?'maori':'general';
   if(mode===elecMode)return;elecMode=mode;
   const list=ELEC.electorates.filter(e=>e.type===mode);
-  const regions=[...new Set(list.map(e=>e.region))];
+  const regions=[...new Set(list.map(e=>e.region))].sort((a,b)=>a.localeCompare(b,'en'));
   let keep='';try{keep=localStorage.getItem('pm-elec-'+mode)||''}catch(e){}
+  const qp=new URLSearchParams(location.search).get('e');if(qp&&list.some(e=>e.name===qp))keep=qp;
   sel.innerHTML='<option value="">Choose your electorate…</option>'+regions.map(r=>`<optgroup label="${esc(r)}">`+list.filter(e=>e.region===r).map(e=>`<option value="${esc(e.name)}">${esc(e.name)}</option>`).join('')+'</optgroup>').join('');
   if([...sel.options].some(o=>o.value===keep))sel.value=keep;
 }
