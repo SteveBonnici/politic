@@ -154,9 +154,21 @@ mark{background:var(--warn);color:#fff;padding:0 2px;border-radius:2px}
   <div class="grid">
     <!-- INPUTS -->
     <div class="col">
+      <section class="panel" aria-labelledby="h-q">
+        <div class="head">
+          <h2 id="h-q">1. Research an issue</h2>
+          <p class="small">Type something that matters to you. The page searches its own policy notes instantly; <b>Ask Claude</b> searches the web live for the latest on that issue.</p>
+        </div>
+        <div class="f"><label for="q">Issue</label><input id="q" type="search" placeholder="e.g. dental, gangs, immigration, student loans, ferries" autocomplete="off"></div>
+        <div class="btns"><button type="button" id="btnAsk" class="primary">Ask Claude (live)</button><button type="button" id="btnQClear">Clear</button></div>
+        <div class="chips" id="qchips"></div>
+        <div id="askout" hidden></div>
+        <div id="qout"></div>
+      </section>
+
       <section class="panel" aria-labelledby="h-pri">
         <div class="head">
-          <h2 id="h-pri">1. Your priorities</h2>
+          <h2 id="h-pri">2. Your priorities</h2>
           <p class="small">Tick every approach you agree with on each issue (as many as you like), then weight the issue from 0 (ignore) to 5 (decisive). A party scores the average across the pills you tick.</p>
         </div>
         <div id="issues"></div>
@@ -164,7 +176,7 @@ mark{background:var(--warn);color:#fff;padding:0 2px;border-radius:2px}
 
       <section class="panel" aria-labelledby="h-fin">
         <div class="head">
-          <h2 id="h-fin">2. Your finances</h2>
+          <h2 id="h-fin">3. Your finances</h2>
           <p class="small">Starts with an example household; put in your own. Everything is calculated in your browser. Nothing you type is stored or sent anywhere.</p>
           <div class="btns">
             <button type="button" id="btnClear">Clear</button>
@@ -207,7 +219,7 @@ mark{background:var(--warn);color:#fff;padding:0 2px;border-radius:2px}
 
       <section class="panel" aria-labelledby="h-elec">
         <div class="head">
-          <h2 id="h-elec">3. Your electorate</h2>
+          <h2 id="h-elec">4. Your electorate</h2>
           <p class="small">You get two votes. Your <b>party vote</b> decides how many seats each party gets, so it is what this tool scores. Your <b>electorate vote</b> picks your local MP. Pick your electorate to see who is standing and where each vote does the most.</p>
         </div>
         <div class="checks">
@@ -218,17 +230,6 @@ mark{background:var(--warn);color:#fff;padding:0 2px;border-radius:2px}
         <div id="elecOut"></div>
       </section>
 
-      <section class="panel" aria-labelledby="h-q">
-        <div class="head">
-          <h2 id="h-q">4. Research an issue</h2>
-          <p class="small">Type something that matters to you. The page searches its own policy notes instantly; <b>Ask Claude</b> searches the web live for the latest on that issue.</p>
-        </div>
-        <div class="f"><label for="q">Issue</label><input id="q" type="search" placeholder="e.g. dental, gangs, immigration, student loans, ferries" autocomplete="off"></div>
-        <div class="btns"><button type="button" id="btnAsk" class="primary">Ask Claude (live)</button><button type="button" id="btnQClear">Clear</button></div>
-        <div class="chips" id="qchips"></div>
-        <div id="askout" hidden></div>
-        <div id="qout"></div>
-      </section>
     </div>
 
     <!-- RESULTS -->
