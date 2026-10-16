@@ -143,28 +143,27 @@ footer{font-size:13px;color:var(--muted);max-width:80ch;display:flex;flex-direct
       <section class="panel" aria-labelledby="h-fin">
         <div class="head">
           <h2 id="h-fin">2. Your finances</h2>
-          <p class="small">Everything is calculated in your browser. Nothing you type is stored or sent anywhere.</p>
+          <p class="small">Starts with an example household; put in your own. Everything is calculated in your browser. Nothing you type is stored or sent anywhere.</p>
           <div class="btns">
             <button type="button" id="btnClear">Clear</button>
-            <button type="button" id="btnOurs" class="primary">Our figures</button>
           </div>
         </div>
         <div class="sub">Income</div>
         <div class="fields">
-          <div class="f"><label for="incA">Earner 1 salary ($k)</label><input id="incA" type="number" min="0" step="5" value="750"></div>
-          <div class="f"><label for="incB">Earner 2 salary ($k)</label><input id="incB" type="number" min="0" step="5" value="250"></div>
-          <div class="f"><label for="coProfit">Company profit after salaries ($k)</label><input id="coProfit" type="number" min="0" step="50" value="1750"></div>
+          <div class="f"><label for="incA">Earner 1 salary ($k)</label><input id="incA" type="number" min="0" step="5" value="95"></div>
+          <div class="f"><label for="incB">Earner 2 salary ($k)</label><input id="incB" type="number" min="0" step="5" value="70"></div>
+          <div class="f"><label for="coProfit">Company profit after salaries ($k)</label><input id="coProfit" type="number" min="0" step="50" value="0"></div>
           <div class="f"><label for="adults">Adults in household</label><input id="adults" type="number" min="1" max="6" step="1" value="2"></div>
         </div>
         <div class="sub">Assets ($m)</div>
         <div class="fields">
-          <div class="f"><label for="home">Family home</label><input id="home" type="number" min="0" step="0.1" value="7"></div>
-          <div class="f"><label for="holiday">Holiday homes</label><input id="holiday" type="number" min="0" step="0.1" value="3"></div>
-          <div class="f"><label for="resInv">Residential rentals</label><input id="resInv" type="number" min="0" step="0.1" value="1.2"></div>
-          <div class="f"><label for="commercial">Commercial property</label><input id="commercial" type="number" min="0" step="0.1" value="13"></div>
-          <div class="f"><label for="debtCom">Debt on commercial</label><input id="debtCom" type="number" min="0" step="0.1" value="9"></div>
+          <div class="f"><label for="home">Family home</label><input id="home" type="number" min="0" step="0.1" value="0.9"></div>
+          <div class="f"><label for="holiday">Holiday homes</label><input id="holiday" type="number" min="0" step="0.1" value="0"></div>
+          <div class="f"><label for="resInv">Residential rentals</label><input id="resInv" type="number" min="0" step="0.1" value="0"></div>
+          <div class="f"><label for="commercial">Commercial property</label><input id="commercial" type="number" min="0" step="0.1" value="0"></div>
+          <div class="f"><label for="debtCom">Debt on commercial</label><input id="debtCom" type="number" min="0" step="0.1" value="0"></div>
           <div class="f"><label for="debtRes">Debt on rentals / holiday homes</label><input id="debtRes" type="number" min="0" step="0.1" value="0"></div>
-          <div class="f"><label for="biz">Business value</label><input id="biz" type="number" min="0" step="0.5" value="9"></div>
+          <div class="f"><label for="biz">Business value</label><input id="biz" type="number" min="0" step="0.5" value="0"></div>
           <div class="f"><label for="turnover">Business turnover</label>
             <select id="turnover"><option value="under" selected>Under $30m</option><option value="over">$30m or more</option></select></div>
         </div>
@@ -177,9 +176,9 @@ footer{font-size:13px;color:var(--muted);max-width:80ch;display:flex;flex-direct
             <select id="basis"><option value="household" selected>Per household</option><option value="person">Per person</option></select></div>
         </div>
         <div class="checks">
-          <label><input type="checkbox" id="trust" checked> Property is held in a family trust</label>
+          <label><input type="checkbox" id="trust"> Property is held in a family trust</label>
           <label><input type="checkbox" id="holidayRented"> Holiday homes are rented out (affects interest deductibility)</label>
-          <label><input type="checkbox" id="holidayVacant" checked> Holiday homes sit empty most of the year (Te Pāti Māori vacant-house tax)</label>
+          <label><input type="checkbox" id="holidayVacant"> Holiday homes sit empty most of the year (Te Pāti Māori vacant-house tax)</label>
           <label><input type="checkbox" id="tpmHome"> Count the family home in Te Pāti Māori's wealth tax (policy unclear)</label>
         </div>
       </section>
@@ -461,11 +460,9 @@ function render(){
   $('elecOut').innerHTML=(addr?'Look up <b>'+addr.replace(/[<>&]/g,'')+'</b> ':'Look up your address ')+'with the official finder at <a href="https://vote.nz" target="_blank" rel="noopener">vote.nz</a> to see your electorate and candidates. This page can\'t look electorates up itself and doesn\'t store or send your address.'+(maori?' On the Māori roll you vote in one of seven Māori electorates, where Te Pāti Māori and Labour compete directly; an electorate win lets a party enter Parliament even under 5%.':' An electorate vote matters most where a small party needs a local seat to get in.');
 }
 
-const FAMILY={incA:750,incB:250,coProfit:1750,adults:2,home:7,holiday:3,resInv:1.2,commercial:13,debtCom:9,debtRes:0,biz:9,turnover:'under',growth:4,rate:5.5,landShare:60,basis:'household',trust:true,holidayRented:false,holidayVacant:true,tpmHome:false};
 const EMPTY={incA:0,incB:0,coProfit:0,adults:2,home:0,holiday:0,resInv:0,commercial:0,debtCom:0,debtRes:0,biz:0,turnover:'under',growth:4,rate:5.5,landShare:60,basis:'household',trust:false,holidayRented:false,holidayVacant:false,tpmHome:false};
 function setFin(v){for(const k in v){const el=$(k);if(!el)continue;if(el.type==='checkbox')el.checked=v[k];else el.value=v[k]}render()}
 $('btnClear').addEventListener('click',()=>setFin(EMPTY));
-$('btnOurs').addEventListener('click',()=>setFin(FAMILY));
 document.addEventListener('input',render);
 document.addEventListener('change',render);
 render();
