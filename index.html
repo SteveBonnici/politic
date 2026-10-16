@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>2026 Party Match</title>
+<meta name="description" content="Weigh tax, health, education, environment, social services, housing and superannuation against the seven parties' 2026 platforms and see what each would cost your household.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: ballot-paper tool — inputs column (priorities, finances, electorate) beside a results column (ranked parties, tax, coalition maths); stacks on phones */
+:root{
+  --paper:#F2F4F1; --card:#FFFFFF; --ink:#16231F; --muted:#5B6B66; --rule:#D6DDD9;
+  --accent:#1F5C66; --accent-soft:#DCEBEC; --good:#2E7D4F; --bad:#B23A2E; --warn:#9A6B00;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#101816; --card:#17221F; --ink:#E6EEEA; --muted:#97A8A2; --rule:#2B3A36;
+  --accent:#6FB8C2; --accent-soft:#1D3437; --good:#6CC08E; --bad:#F08A7E; --warn:#E0B44F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#101816; --card:#17221F; --ink:#E6EEEA; --muted:#97A8A2; --rule:#2B3A36;
+  --accent:#6FB8C2; --accent-soft:#1D3437; --good:#6CC08E; --bad:#F08A7E; --warn:#E0B44F; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-top:max(24px,env(safe-area-inset-top,0px));padding-bottom:max(48px,env(safe-area-inset-bottom,0px))}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+header{display:flex;flex-direction:column;gap:6px;max-width:70ch}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,5vw,46px);line-height:1.05;margin:0;text-wrap:balance}
+h2{font-family:var(--display);font-weight:700;font-size:22px;margin:0;text-wrap:balance}
+h3{font-family:var(--display);font-weight:700;font-size:17px;margin:0}
+p{margin:0}
+.lede{color:var(--muted)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+.col{display:flex;flex-direction:column;gap:20px;min-width:0}
+.panel{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.panel > .head{display:flex;flex-direction:column;gap:4px}
+.small{font-size:14px;color:var(--muted)}
+.issue{display:flex;flex-direction:column;gap:8px;padding-top:14px;border-top:1px solid var(--rule)}
+.issue:first-of-type{border-top:0;padding-top:0}
+.issue-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.weight{display:flex;align-items:center;gap:10px}
+.weight input{width:130px;accent-color:var(--accent)}
+.weight output{font-family:var(--mono);font-size:13px;min-width:5.5ch;color:var(--muted)}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:inline-block;padding:6px 11px;border:1px solid var(--rule);border-radius:999px;font-size:14px;cursor:pointer;background:var(--paper)}
+.seg input:checked + span{background:var(--accent);border-color:var(--accent);color:var(--card);font-weight:600}
+.seg input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px}
+@media (max-width:480px){.fields{grid-template-columns:minmax(0,1fr)}}
+.f{display:flex;flex-direction:column;gap:4px;min-width:0}
+.f label{font-size:13px;font-weight:600}
+.f input[type=number],.f input[type=text],.f select{font:inherit;font-family:var(--mono);font-size:15px;padding:8px 10px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);color:var(--ink);width:100%}
+.f input:focus-visible,.f select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.sub{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.checks{display:flex;flex-direction:column;gap:8px}
+.checks label{display:flex;gap:8px;align-items:flex-start;font-size:14px}
+.checks input{accent-color:var(--accent);margin-top:4px}
+a{color:var(--accent)}
+.badge-ex{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--accent-soft);color:var(--accent);padding:2px 8px;border-radius:4px;align-self:flex-start}
+
+/* results */
+.verdict{background:var(--ink);color:var(--paper);border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:10px;border:0}
+.verdict .eyebrow{color:var(--paper);opacity:.7}
+.verdict .big{font-family:var(--display);font-weight:800;font-size:clamp(28px,4.5vw,40px);line-height:1.05;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tick{display:inline-grid;place-items:center;width:40px;height:40px;border:2px solid var(--paper);border-radius:4px;flex:none}
+.tick svg{width:26px;height:26px}
+.verdict p{opacity:.85}
+.rank{display:flex;flex-direction:column;gap:10px}
+.party{border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:var(--card)}
+.party summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 14px 12px 0}
+.party summary::-webkit-details-marker{display:none}
+.party summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.swatch{align-self:stretch;width:10px}
+.pmain{display:flex;flex-direction:column;gap:6px;min-width:0}
+.pname{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.pname strong{font-family:var(--display);font-size:17px}
+.pname .bloc{font-size:12px;color:var(--muted);font-family:var(--mono)}
+.bar{height:8px;background:var(--rule);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:4px;transition:width .25s}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font-family:var(--mono);font-size:11px;padding:1px 6px;border-radius:4px;background:var(--paper);color:var(--muted);border:1px solid var(--rule)}
+.pscore{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.pscore b{font-family:var(--display);font-size:22px;font-variant-numeric:tabular-nums}
+.taxd{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums}
+.up{color:var(--bad)} .down{color:var(--good)} .flat{color:var(--muted)}
+.pbody{padding:4px 16px 16px 22px;display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--rule)}
+.pbody dl{margin:0;display:grid;grid-template-columns:110px minmax(0,1fr);gap:6px 12px;font-size:14px}
+@media (max-width:480px){.pbody dl{grid-template-columns:minmax(0,1fr)} .pbody dt{margin-top:6px}}
+.pbody dt{font-weight:700}
+.pbody dd{margin:0;color:var(--ink)}
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:6px 8px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.blocs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:480px){.blocs{grid-template-columns:minmax(0,1fr)}}
+.blocbox{border:1px solid var(--rule);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.blocbox.win{border-color:var(--accent);background:var(--accent-soft)}
+.blocbox b{font-family:var(--display);font-size:24px;font-variant-numeric:tabular-nums}
+.seats{display:flex;height:22px;border-radius:4px;overflow:hidden;border:1px solid var(--rule)}
+.seats span{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;font-family:var(--mono);color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.note{font-size:13px;color:var(--muted);border-left:3px solid var(--rule);padding-left:10px}
+footer{font-size:13px;color:var(--muted);max-width:80ch;display:flex;flex-direction:column;gap:6px}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">NZ general election · Saturday 7 November 2026</span>
+    <h1>2026 Party Match</h1>
+    <p class="lede">Weigh tax, health, education, environment, social services, housing and superannuation. Set what matters to you and how much, enter your income and assets, and see which party's platform fits you best, what each would cost you in tax, and which likely government suits you.</p>
+  </header>
+
+  <div class="grid">
+    <!-- INPUTS -->
+    <div class="col">
+      <section class="panel" aria-labelledby="h-pri">
+        <div class="head">
+          <h2 id="h-pri">1. Your priorities</h2>
+          <p class="small">Pick the approach you prefer on each issue, then weight it from 0 (ignore) to 5 (decisive).</p>
+        </div>
+        <div id="issues"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="h-fin">
+        <div class="head">
+          <h2 id="h-fin">2. Your finances</h2>
+          <span class="badge-ex">Example household · replace with your own</span>
+          <p class="small">Everything is calculated in your browser. Nothing you type is stored or sent anywhere.</p>
+        </div>
+        <div class="sub">Income</div>
+        <div class="fields">
+          <div class="f"><label for="incA">Earner 1 salary ($k)</label><input id="incA" type="number" min="0" step="5" value="95"></div>
+          <div class="f"><label for="incB">Earner 2 salary ($k)</label><input id="incB" type="number" min="0" step="5" value="70"></div>
+          <div class="f"><label for="coProfit">Company profit after salaries ($k)</label><input id="coProfit" type="number" min="0" step="50" value="0"></div>
+          <div class="f"><label for="adults">Adults in household</label><input id="adults" type="number" min="1" max="6" step="1" value="2"></div>
+        </div>
+        <div class="sub">Assets ($m)</div>
+        <div class="fields">
+          <div class="f"><label for="home">Family home</label><input id="home" type="number" min="0" step="0.1" value="0.9"></div>
+          <div class="f"><label for="holiday">Holiday homes</label><input id="holiday" type="number" min="0" step="0.1" value="0"></div>
+          <div class="f"><label for="resInv">Residential rentals</label><input id="resInv" type="number" min="0" step="0.1" value="0"></div>
+          <div class="f"><label for="commercial">Commercial property</label><input id="commercial" type="number" min="0" step="0.1" value="0"></div>
+          <div class="f"><label for="debtCom">Debt on commercial</label><input id="debtCom" type="number" min="0" step="0.1" value="0"></div>
+          <div class="f"><label for="debtRes">Debt on rentals / holiday homes</label><input id="debtRes" type="number" min="0" step="0.1" value="0"></div>
+          <div class="f"><label for="biz">Business value</label><input id="biz" type="number" min="0" step="0.5" value="0"></div>
+          <div class="f"><label for="turnover">Business turnover</label>
+            <select id="turnover"><option value="under" selected>Under $30m</option><option value="over">$30m or more</option></select></div>
+        </div>
+        <div class="sub">Assumptions</div>
+        <div class="fields">
+          <div class="f"><label for="growth">Property growth (% a year)</label><input id="growth" type="number" min="0" max="15" step="0.5" value="4"></div>
+          <div class="f"><label for="rate">Mortgage interest rate (%)</label><input id="rate" type="number" min="0" max="15" step="0.25" value="5.5"></div>
+          <div class="f"><label for="landShare">Land share of property value (%)</label><input id="landShare" type="number" min="0" max="100" step="5" value="60"></div>
+          <div class="f"><label for="basis">Wealth tax threshold applies</label>
+            <select id="basis"><option value="household" selected>Per household</option><option value="person">Per person</option></select></div>
+        </div>
+        <div class="checks">
+          <label><input type="checkbox" id="trust"> Property is held in a family trust</label>
+          <label><input type="checkbox" id="holidayRented"> Holiday homes are rented out (affects interest deductibility)</label>
+          <label><input type="checkbox" id="holidayVacant"> Holiday homes sit empty most of the year (Te Pāti Māori vacant-house tax)</label>
+          <label><input type="checkbox" id="tpmHome"> Count the family home in Te Pāti Māori's wealth tax (policy unclear)</label>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="h-elec">
+        <div class="head">
+          <h2 id="h-elec">3. Your electorate</h2>
+          <p class="small">You get two votes. Your <b>party vote</b> decides how many seats each party gets, so it is what this tool scores. Your <b>electorate vote</b> picks your local MP.</p>
+        </div>
+        <div class="f"><label for="addr">Your address</label><input id="addr" type="text" placeholder="e.g. 12 Example Street, Remuera" autocomplete="street-address"></div>
+        <p class="small" id="elecOut">This page can't look up electorates itself and doesn't store or send your address. Use the official finder at <a href="https://vote.nz" target="_blank" rel="noopener">vote.nz</a> to see your electorate and candidates.</p>
+        <div class="checks">
+          <label><input type="checkbox" id="maoriRoll"> I'm on the Māori roll</label>
+        </div>
+      </section>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="col" aria-live="polite">
+      <section class="verdict" id="verdict"></section>
+
+      <section class="panel" aria-labelledby="h-rank">
+        <div class="head">
+          <h2 id="h-rank">Party match</h2>
+          <p class="small">Weighted fit with your priorities. Tap a party for its policies and your tax breakdown. Tax figures are the change per year against today's rules.</p>
+        </div>
+        <div class="rank" id="rank"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="h-gov">
+        <div class="head">
+          <h2 id="h-gov">Which government fits you</h2>
+          <p class="small">Under MMP your vote ends up inside a coalition. These two blocs are the realistic options, using the RNZ–Reid Research poll (24 Sep–1 Oct): 61 of 120 seats needed.</p>
+        </div>
+        <div class="seats" id="seatbar" aria-hidden="true"></div>
+        <div class="legend" id="seatlegend"></div>
+        <div class="blocs" id="blocs"></div>
+        <p class="note" id="govnote"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="h-tax">
+        <div class="head">
+          <h2 id="h-tax">Your tax under each party</h2>
+          <p class="small">Annual change in tax for your household. Labour's figure is the capital gains tax that builds up each year and is paid when you sell.</p>
+        </div>
+        <div class="tbl-wrap"><table id="taxtbl"></table></div>
+      </section>
+    </div>
+  </div>
+
+  <footer>
+    <p><b>How this works.</b> Each party gets a 0–100 score per issue for how closely its 2026 platform matches the approach you picked. These scores are judgements made from party policy documents, fiscal plans and news coverage as at 17 October 2026. Your tax score comes from the calculations shown. The overall match is the weighted average.</p>
+    <p>This is a model, not advice. Wealth-tax rules for trusts and private businesses have not been published by the Greens or Te Pāti Māori, and NZ First's $14k tax-free band is unconfirmed for 2026. Check your position with a tax adviser.</p>
+    <p>Sources: party websites and fiscal plans, KPMG and Deloitte election tax trackers, RNZ, 1News, ODT, The Spinoff, interest.co.nz, Waatea.</p>
+  </footer>
+</div>
+
+<script>
+const P = [
+ {id:'nat',name:'National',color:'#1D5FAE',bloc:'right',poll:25.9,seats:32,
+  health:'$604m more for Pharmac; free bowel screening from 50, breast screening to 74, cervical 25–69; prostate and lung screening pilots.',
+  education:'Replace NCEA from 2028; learning support coordinator in every primary school; 2m more teacher-aide hours; school lunches funded to 2029; student loan repayment rate cut to 10%.',
+  environment:'Keeps current climate settings; Electrify NZ energy plan; low-interest Home Energy Fund for solar, batteries and insulation; finish replacing the RMA.',
+  social:'Targeted support with "stronger welfare expectations" ($583m savings in its fiscal plan); target of 50,000 fewer on Jobseeker by 2030.',
+  housing:'First Home Loan income cap raised to $300k (5% deposit); Going for Housing Growth and RMA replacement to free up land; keeps full interest deductibility for landlords.',
+  super:'No change to the age of 65 this term and super stays universal; cross-party retirement talks after the election. Compulsory KiwiSaver from 2028, 6% + 6% by 2032, $1,500 for newborns.',
+  tax:'No new taxes and no income tax cuts this term.'},
+ {id:'lab',name:'Labour',color:'#D52B1E',bloc:'left',poll:30.8,seats:37,
+  health:'Three free GP visits a year (Medicard); $5 prescription fee scrapped; free maternity scans; graduate nurse job guarantee; about $15b for health.',
+  education:'Locally made school lunches from 2028; 10% off student debt; apprenticeship boost with toolbox grant; repairs at 2,000+ schools.',
+  environment:'SolarSaver home solar; curbs on whole-farm forestry conversions; no farm emissions pricing; public transport fare caps.',
+  social:'Free GP visits, no prescription fee, fare caps of $20/week in main cities. No new 2026 benefit-level policy found.',
+  housing:'$2.9b for Kāinga Ora and at least 6,000 new state and social homes; social housing rent kept at 25% of income; capital gains tax on investment property.',
+  super:'Keeps super at 65 and universal. Compulsory employer KiwiSaver contributions from July 2028, rising to 6% by 2032; contributions continue past 65.',
+  tax:'28% capital gains tax on investment and commercial property from July 2027 (gains after that date, paid on sale); family home, farms, shares and businesses exempt. Investment Boost scrapped.'},
+ {id:'grn',name:'Greens',color:'#0E8A3A',bloc:'left',poll:14.8,seats:18,
+  health:'Path to free dental and GP care; more Pharmac funding; safe staffing levels.',
+  education:'Lunches for every pupil; free early childhood education; universal student income; work toward fees-free study.',
+  environment:'Gross emissions targets; price farm emissions; end free ETS allocation; ban new fossil fuel extraction; protect 30% of land and sea; $3b for renewables.',
+  social:'Liveable incomes with benefits raised; all sanctions abolished; Best Start universal for under-3s; bigger Working for Families; MSD debt written off over time.',
+  housing:'35,000 public homes in 5 years; rent rises capped at 2% a year; end no-cause evictions; rental warrant of fitness and landlord register; same-day emergency housing.',
+  super:'Keeps super at 65 and universal; restores 10-year residency rule; state-run not-for-profit retirement villages.',
+  tax:'Top rate 45% over $160k; 2.5% wealth tax on net assets over $10m (home exempt); 33% tax on inheritances over $1m; 33% company tax for turnover over $30m; rental interest deductions removed; 10-year bright-line.'},
+ {id:'act',name:'ACT',color:'#C9A800',bloc:'right',poll:9,seats:11,
+  health:'National Cancer Centre (Auckland and Christchurch); bigger pharmacist minor-ailments scheme; close the medicines gap with Australia.',
+  education:'Independent school funding tied to inflation; new Epsom secondary school; teachers can remove disruptive students.',
+  environment:'Repeal the Zero Carbon Act and net zero target; no farm emissions tax; renegotiate or leave Paris; ETS revenue returned to households.',
+  social:'Independent medical checks for health and disability benefits ($653m savings); 5-year wait for benefits for new residents; electronic money management.',
+  housing:'Abolish rental loss ring-fencing so landlords can offset losses ($1.1b over 4 years). No new supply or state housing policy found.',
+  super:'Super age rises gradually to 67 by 2035 (65 kept for 20+ years of physical work); pause NZ Super Fund contributions; tax-free KiwiSaver earnings but government contributions ended.',
+  tax:'No new taxes; no tax on KiwiSaver earnings; rental loss ring-fencing abolished; donation credit cap removed.'},
+ {id:'nzf',name:'NZ First',color:'#3A3A3A',bloc:'right',poll:10.6,seats:13,
+  health:'Prevention and nutrition focus; health coaches in GP practices; review dietary guidelines; nurse pay. No costings.',
+  education:'No detailed 2026 policy; nutrition in the curriculum; opposes relationship and sexuality education.',
+  environment:'Leave the Paris Agreement; $1bn survey of oil, gas, geothermal and carbon storage; break up the gentailers.',
+  social:'Working for Families in-work credit permanently up $120 a week; minimum wage indexed to inflation; $5,000 a year Kiwi Kids Grant for a family\'s first three children.',
+  housing:'Seniors Housing Plan (granny flats, ageing in place); open to foreign buyers only above a large investment threshold. No figures.',
+  super:'Keeps super at 65 and the current rate, but for citizens only from 2029. Compulsory KiwiSaver rising to 10%; $1,000 for newborn citizens.',
+  tax:'Company tax cut to 20% for turnover under $30m; possibly first $14k of income tax-free (unconfirmed for 2026).'},
+ {id:'top',name:'The Opportunity Party',color:'#159C8C',bloc:'left',poll:5.5,seats:7,
+  health:'Health funding to 9% of GDP over 10 years; primary care to 10% of Health NZ spending; 10-year cross-party health plan (a coalition bottom line).',
+  education:'Smaller early childhood ratios (1:3 under twos); 80% qualified ECE staff; Treaty history taught; student loan interest forgiveness.',
+  environment:'Recommit to Paris and protect the Climate Change Commission (bottom line); methane cap-and-trade; end bottom trawling in damaged areas (bottom line).',
+  social:'Citizen\'s Income of $19,400 a year tax-free for every adult, plus top-ups for housing, sole parents, disability and children; replaces most benefits. Analysis finds the poorest gain little.',
+  housing:'Land value tax intended to cut house prices 10–15% and discourage land banking. No state housing build figures found.',
+  super:'Super becomes the Citizen\'s Income plus a top-up to today\'s rates; the top-up could shrink for wealthier retirees. KiwiSaver 2.0: compulsory 6% + 6%.',
+  tax:'Land value tax 1.75% a year on urban and commercial land, 0.5% rural, no home exemption, phased in over ~10 years; income tax 28% / 34% / 39%.'},
+ {id:'tpm',name:'Te Pāti Māori',color:'#8E1B2C',bloc:'left',poll:2,seats:2,
+  health:'Māori-led health authority; prevention and whānau wellbeing; culturally safe services.',
+  education:'Māori Education Authority; te reo core to Year 10; expanded lunches; free public transport for students; free school counselling.',
+  environment:'Ban seabed mining; climate-resilience investment; regenerative farming; $1bn energy sovereignty fund.',
+  social:'First $30k of income tax-free; Kai Credit for earners under $60k; welfare reform "so whānau aren\'t punished for being poor". No figures.',
+  housing:'More public and affordable homes; easier building on Māori land; taxes on land banking and vacant homes; 5% stamp duty (first-home buyers under $1m exempt).',
+  super:'No formal 2026 policy. In 2023 it opposed raising the age and proposed earlier access for Māori.',
+  tax:'Top rate 48% over $300k; company tax 33%; wealth tax 1.5–2.5% above $2m; 5% stamp duty on residential sales; vacant-house and land-banking taxes.'},
+];
+
+const ISSUES = [
+ {id:'tax',label:'Tax on my household',w:3,stances:[{id:'cost',label:'Lowest tax for us'}],help:'Scored from your figures below.'},
+ {id:'health',label:'Health',w:3,stances:[
+   {id:'access',label:'Cheaper GP and medicines',s:{nat:.4,lab:1,grn:.95,act:.3,nzf:.2,top:.6,tpm:.75}},
+   {id:'medicines',label:'More medicines and screening',s:{nat:1,lab:.6,grn:.5,act:.9,nzf:.2,top:.5,tpm:.3}},
+   {id:'longterm',label:'Long-term funding and prevention',s:{nat:.5,lab:.6,grn:.6,act:.4,nzf:.55,top:1,tpm:.5}}]},
+ {id:'education',label:'Education',w:4,stances:[
+   {id:'standards',label:'Raise achievement',s:{nat:1,lab:.4,grn:.2,act:.8,nzf:.4,top:.4,tpm:.2}},
+   {id:'costs',label:'Cut costs for families',s:{nat:.6,lab:1,grn:1,act:.3,nzf:.35,top:.5,tpm:.8}},
+   {id:'early',label:'Quality early childhood',s:{nat:.4,lab:.4,grn:.9,act:.2,nzf:.1,top:1,tpm:.5}},
+   {id:'choice',label:'Choice and discipline',s:{nat:.6,lab:.2,grn:.1,act:1,nzf:.5,top:.2,tpm:.1}}]},
+ {id:'environment',label:'Environment',w:5,stances:[
+   {id:'ambitious',label:'Cut emissions hard, protect nature',s:{nat:.3,lab:.5,grn:1,act:.05,nzf:.05,top:.85,tpm:.75}},
+   {id:'energy',label:'Clean energy, keep costs down',s:{nat:.9,lab:.8,grn:.6,act:.4,nzf:.4,top:.6,tpm:.5}},
+   {id:'economy',label:'Economy first, looser climate rules',s:{nat:.6,lab:.2,grn:0,act:1,nzf:.9,top:.1,tpm:.1}}]},
+ {id:'social',label:'Social services',w:5,stances:[
+   {id:'broad',label:'Broad safety net for everyone',s:{nat:.2,lab:.6,grn:1,act:.05,nzf:.45,top:.9,tpm:.85}},
+   {id:'targeted',label:'Targeted help for those in need',s:{nat:.6,lab:.7,grn:.5,act:.5,nzf:.8,top:.4,tpm:.6}},
+   {id:'self',label:'Work obligations, lower spending',s:{nat:.8,lab:.2,grn:0,act:1,nzf:.5,top:.2,tpm:0}}]},
+ {id:'housing',label:'Housing',w:3,stances:[
+   {id:'public',label:'Build public housing, protect renters',s:{nat:.3,lab:.85,grn:1,act:.1,nzf:.2,top:.5,tpm:.7}},
+   {id:'firsthome',label:'Help first-home buyers, lower prices',s:{nat:.8,lab:.5,grn:.5,act:.4,nzf:.3,top:.9,tpm:.5}},
+   {id:'private',label:'Back landlords and private building',s:{nat:.8,lab:.3,grn:0,act:1,nzf:.5,top:.2,tpm:.1}}]},
+ {id:'super',label:'Superannuation',w:2,stances:[
+   {id:'keep',label:'Keep super at 65 for everyone',s:{nat:.75,lab:1,grn:1,act:.1,nzf:.8,top:.5,tpm:.8}},
+   {id:'sustain',label:'Raise the age or target it',s:{nat:.5,lab:.1,grn:.1,act:1,nzf:.3,top:.7,tpm:0}},
+   {id:'kiwisaver',label:'Bigger compulsory KiwiSaver',s:{nat:.9,lab:.9,grn:.3,act:.4,nzf:.9,top:.9,tpm:.2}}]},
+];
+const DEFAULT_STANCE = {tax:'cost',health:'access',education:'costs',environment:'ambitious',social:'broad',housing:'public',super:'keep'};
+
+const $ = id => document.getElementById(id);
+const INF = Infinity;
+function bracket(inc, br){let t=0,lo=0;for(const [hi,r] of br){if(inc>lo)t+=(Math.min(inc,hi)-lo)*r;lo=hi}return t}
+const CUR=[[15600,.105],[53500,.175],[78100,.30],[180000,.33],[INF,.39]];
+const GRN=[[10000,0],[20000,.10],[40000,.175],[60000,.255],[80000,.305],[160000,.335],[INF,.45]];
+const TPM=[[30000,0],[60000,.15],[90000,.33],[180000,.39],[300000,.42],[INF,.48]];
+const TOPB=[[50000,.28],[200000,.34],[INF,.39]];
+const TPMW=[[2e6,0],[5e6,.015],[1e7,.02],[INF,.025]];
+
+function money(v){const a=Math.abs(v),s=v<0?'−':'+';
+  if(a<500)return '$0';
+  return s+'$'+(a>=1e6?(a/1e6).toFixed(2)+'m':Math.round(a/1000)+'k')}
+function plain(v){const a=Math.abs(v);return (v<0?'−':'')+'$'+(a>=1e6?(a/1e6).toFixed(2)+'m':Math.round(a/1000)+'k')}
+
+/* build issue controls */
+const issuesEl=$('issues');
+ISSUES.forEach(is=>{
+  const d=document.createElement('div');d.className='issue';
+  let seg='';
+  if(is.stances.length>1){seg='<div class="seg" role="radiogroup" aria-label="'+is.label+' approach">'+is.stances.map(s=>
+    `<label><input type="radio" name="st-${is.id}" id="st-${is.id}-${s.id}" value="${s.id}" ${DEFAULT_STANCE[is.id]===s.id?'checked':''}><span>${s.label}</span></label>`).join('')+'</div>'}
+  else seg='<p class="small">'+is.help+'</p>';
+  d.innerHTML=`<div class="issue-top"><h3>${is.label}</h3><div class="weight"><label class="small" for="w-${is.id}">Weight</label><input type="range" id="w-${is.id}" min="0" max="5" step="1" value="${is.w}"><output id="o-${is.id}">${is.w} / 5</output></div></div>${seg}`;
+  issuesEl.appendChild(d);
+});
+
+function num(id){const v=parseFloat($(id).value);return isFinite(v)?v:0}
+
+function taxes(){
+  const A=num('incA')*1e3,B=num('incB')*1e3,co=num('coProfit')*1e3,adults=Math.max(1,Math.round(num('adults')));
+  const home=num('home')*1e6,hol=num('holiday')*1e6,res=num('resInv')*1e6,com=num('commercial')*1e6;
+  const dCom=num('debtCom')*1e6,dRes=num('debtRes')*1e6,biz=num('biz')*1e6;
+  const g=num('growth')/100,rate=num('rate')/100,land=num('landShare')/100;
+  const small=$('turnover').value==='under',perPerson=$('basis').value==='person';
+  const holRented=$('holidayRented').checked,holVacant=$('holidayVacant').checked,tpmHome=$('tpmHome').checked,trust=$('trust').checked;
+  const cur=bracket(A,CUR)+bracket(B,CUR);
+  const netInv=Math.max(0,hol+res+com-dCom-dRes);
+  const earners=[A,B].filter(x=>x>0).length;
+  const out={};
+  out.nat={lines:[['No tax changes proposed',0]]};
+  out.act={lines:[['No new taxes; KiwiSaver earnings untaxed (small gain, not modelled)',0]]};
+  const nz=[];
+  if(small&&co>0)nz.push(['Company tax 28% → 20% (timing gain; dividends still topped up)',-co*.08]);
+  nz.push(['First $14k tax-free (unconfirmed for 2026)',-1470*earners]);
+  out.nzf={lines:nz};
+  const cgtBase=com+res+hol;
+  out.lab={lines:[['Capital gains tax, 28% on '+plain(cgtBase)+' of property growing '+(g*100).toFixed(1)+'%/yr (paid on sale)',cgtBase*g*.28]],onSale:true};
+  const gl=[];
+  gl.push(['Income tax (45% over $160k)',bracket(A,GRN)+bracket(B,GRN)-cur]);
+  const gBase=netInv+biz;
+  const gW=perPerson? adults*Math.max(0,gBase/adults-1e7)*.025 : Math.max(0,gBase-1e7)*.025;
+  gl.push(['Wealth tax 2.5% over $10m on '+plain(gBase)+' net (home exempt)',gW]);
+  const resShare=res+(holRented?hol:0);
+  const resDebt=dRes*(hol+res>0?resShare/(hol+res):0);
+  gl.push(['Rental interest no longer deductible ('+plain(resDebt)+' of debt)',resDebt*rate*.39]);
+  if(!small)gl.push(['Company tax 33% (turnover over $30m)',co*.05]);
+  out.grn={lines:gl};
+  const tl=[];
+  tl.push(['Income tax (28/34/39%, no tax-free band)',bracket(A,TOPB)+bracket(B,TOPB)-cur]);
+  tl.push(['Citizen\'s Income, $19,400 × '+adults+' adults',-19400*adults]);
+  tl.push(['Land value tax 1.75% on '+plain((home+hol+res+com)*land)+' of land (full phase-in)',(home+hol+res+com)*land*.0175]);
+  out.top={lines:tl};
+  const ml=[];
+  ml.push(['Income tax (48% over $300k)',bracket(A,TPM)+bracket(B,TPM)-cur]);
+  ml.push(['Company tax 28% → 33%',co*.05]);
+  const mBase=netInv+biz+(tpmHome?home:0);
+  const mW=perPerson? adults*bracket(mBase/adults,TPMW) : bracket(mBase,TPMW);
+  ml.push(['Wealth tax 1.5–2.5% on '+plain(mBase)+' net',mW]);
+  if(holVacant&&hol>0)ml.push(['Vacant-house tax 2% on holiday homes (design unclear)',hol*.02]);
+  out.tpm={lines:ml};
+  for(const k in out){out[k].total=out[k].lines.reduce((a,l)=>a+l[1],0)}
+  const scale=Math.max(50000,0.1*(A+B+co));
+  for(const k in out){out[k].score=Math.min(1,Math.max(0,.5-.5*out[k].total/scale))}
+  out._trust=trust;
+  return out;
+}
+
+function render(){
+  ISSUES.forEach(is=>{$('o-'+is.id).textContent=$('w-'+is.id).value+' / 5'});
+  const T=taxes();
+  const res=P.map(p=>{
+    let sw=0,ss=0;const per={};
+    ISSUES.forEach(is=>{
+      const w=+$('w-'+is.id).value;
+      let s;
+      if(is.id==='tax')s=T[p.id].score;
+      else{const sel=document.querySelector(`input[name="st-${is.id}"]:checked`);const st=is.stances.find(x=>x.id===(sel?sel.value:DEFAULT_STANCE[is.id]));s=st.s[p.id]}
+      per[is.id]=s;sw+=w;ss+=w*s;
+    });
+    return {...p,per,score:sw?ss/sw:0,tax:T[p.id]};
+  }).sort((a,b)=>b.score-a.score);
+
+  // verdict
+  const top=res[0],second=res[1];
+  const thr=top.poll<5?` Polling at ${top.poll}%, ${top.name} needs an electorate seat or a jump past 5% for your party vote to count.`:(top.poll<6.5?` At ${top.poll}% it is close to the 5% threshold.`:'');
+  $('verdict').innerHTML=`<span class="eyebrow">Your closest match for the party vote</span>
+   <div class="big"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l5 5L20 6"/></svg></span>${top.name}<span style="font-size:.55em;opacity:.75">${Math.round(top.score*100)}%</span></div>
+   <p>Next closest: ${second.name} (${Math.round(second.score*100)}%). Your tax would change by ${money(top.tax.total)} a year${top.tax.onSale?' (paid on sale)':''} under ${top.name}.${thr}</p>`;
+
+  // rank
+  $('rank').innerHTML=res.map(p=>{
+    const t=p.tax.total,cls=t>500?'up':t<-500?'down':'flat';
+    const chips=ISSUES.filter(is=>+$('w-'+is.id).value>0).map(is=>`<span class="chip">${(is.id==='super'?'Super':is.label.split(' ')[0])} ${Math.round(p.per[is.id]*100)}</span>`).join('');
+    const lines=p.tax.lines.map(l=>`<tr><td>${l[0]}</td><td class="num ${l[1]>500?'up':l[1]<-500?'down':'flat'}">${money(l[1])}</td></tr>`).join('');
+    return `<details class="party"><summary><span class="swatch" style="background:${p.color}"></span>
+      <div class="pmain"><div class="pname"><strong>${p.name}</strong><span class="bloc">${p.poll}% in poll · ${p.bloc==='left'?'Labour-led bloc':'National-led bloc'}</span></div>
+      <div class="bar"><i style="width:${Math.round(p.score*100)}%;background:${p.color}"></i></div><div class="chips">${chips}</div></div>
+      <div class="pscore"><b>${Math.round(p.score*100)}%</b><span class="taxd ${cls}">${money(t)}/yr</span></div></summary>
+      <div class="pbody"><dl><dt>Tax</dt><dd>${p.tax}</dd><dt>Health</dt><dd>${p.health}</dd><dt>Education</dt><dd>${p.education}</dd><dt>Environment</dt><dd>${p.environment}</dd><dt>Social services</dt><dd>${p.social}</dd><dt>Housing</dt><dd>${p.housing}</dd><dt>Super</dt><dd>${p.super}</dd></dl>
+      <div class="tbl-wrap"><table><thead><tr><th>Your tax change</th><th class="num">Per year</th></tr></thead><tbody>${lines}</tbody></table></div></div></details>`;
+  }).join('');
+
+  // blocs
+  const L=res.filter(p=>p.bloc==='left'),R=res.filter(p=>p.bloc==='right');
+  const fit=arr=>arr.reduce((a,p)=>a+p.poll*p.score,0)/arr.reduce((a,p)=>a+p.poll,0);
+  const seats=arr=>arr.reduce((a,p)=>a+p.seats,0);
+  const fl=fit(L),fr=fit(R);
+  const order=['nat','act','nzf','tpm','grn','lab','top'];
+  $('seatbar').innerHTML=order.map(id=>{const p=P.find(x=>x.id===id);return `<span style="width:${p.seats/120*100}%;background:${p.color}" title="${p.name} ${p.seats}"></span>`}).join('');
+  $('seatlegend').innerHTML=order.map(id=>{const p=P.find(x=>x.id===id);return `<span><i style="background:${p.color}"></i>${p.name} ${p.seats}</span>`}).join('');
+  const taxL=L.find(p=>p.id==='lab').tax.total, taxR=R.find(p=>p.id==='nat').tax.total;
+  $('blocs').innerHTML=`<div class="blocbox ${fl>=fr?'win':''}"><span class="small">Labour + Greens + TOP (+ Te Pāti Māori)</span><b>${Math.round(fl*100)}% fit</b><span class="small">${seats(L)} seats in this poll. Most likely tax outcome: Labour's capital gains tax, ${money(taxL)}/yr for you.</span></div>
+   <div class="blocbox ${fr>fl?'win':''}"><span class="small">National + ACT + NZ First</span><b>${Math.round(fr*100)}% fit</b><span class="small">${seats(R)} seats in this poll. Most likely tax outcome: no change for you (${money(taxR)}), possibly a smaller-company tax cut.</span></div>`;
+  $('govnote').textContent='Fit is each bloc\'s parties weighted by poll share. Luxon has ruled out TOP; Labour and NZ First have ruled each other out. Labour has said it will not adopt the Greens\' or TOP\'s wealth and land taxes, so minor-party tax ideas are more likely to be traded away than enacted. If TOP drops under 5% it gets no seats, which helps the National-led bloc.';
+
+  // tax table
+  const allRows=[...P].sort((a,b)=>T[a.id].total-T[b.id].total).map(p=>{const t=T[p.id].total;return `<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${p.color};margin-right:6px"></span>${p.name}</td><td class="num ${t>500?'up':t<-500?'down':'flat'}">${money(t)}</td><td class="small">${T[p.id].onSale?'Paid when property sells':(p.id==='top'?'Phased in over ~10 years':'Each year')}</td></tr>`}).join('');
+  $('taxtbl').innerHTML=`<thead><tr><th>Party</th><th class="num">Change / yr</th><th>When</th></tr></thead><tbody>${allRows}</tbody>`;
+
+  // electorate note
+  const maori=$('maoriRoll').checked, addr=$('addr').value.trim();
+  $('elecOut').innerHTML=(addr?'Look up <b>'+addr.replace(/[<>&]/g,'')+'</b> ':'Look up your address ')+'with the official finder at <a href="https://vote.nz" target="_blank" rel="noopener">vote.nz</a> to see your electorate and candidates. This page can\'t look electorates up itself and doesn\'t store or send your address.'+(maori?' On the Māori roll you vote in one of seven Māori electorates, where Te Pāti Māori and Labour compete directly; an electorate win lets a party enter Parliament even under 5%.':' An electorate vote matters most where a small party needs a local seat to get in.');
+}
+
+document.addEventListener('input',render);
+document.addEventListener('change',render);
+render();
+</script>
+
+</body>
+</html>
