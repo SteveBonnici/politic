@@ -117,16 +117,23 @@ export default {
       }
 
       const parts = [];
-      const sources = new Map();
-      for (const block of msg.content) {
+      const sources = new Map();   // cited pages first, then pages the search returned
+      const searched = new Map();
+      const all = [...messages.filter((m) => m.role === "assistant").flatMap((m) => m.content), ...msg.content];
+      for (const block of all) {
         if (block.type === "text") {
           parts.push(block.text);
           for (const c of block.citations || []) {
-            if (c.type === "web_search_result_location" && c.url && !sources.has(c.url))
-              sources.set(c.url, { url: c.url, title: c.title || c.url });
+            if (c.url && !sources.has(c.url)) sources.set(c.url, { url: c.url, title: c.title || c.url });
+          }
+        } else if (block.type === "web_search_tool_result" && Array.isArray(block.content)) {
+          for (const r of block.content) {
+            if (r.type === "web_search_result" && r.url && !searched.has(r.url))
+              searched.set(r.url, { url: r.url, title: r.title || r.url });
           }
         }
       }
+      for (const [u, v] of searched) if (sources.size < 8 && !sources.has(u)) sources.set(u, v);
       return json(
         {
           answer: parts.join("").trim(),

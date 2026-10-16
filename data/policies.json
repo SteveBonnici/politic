@@ -1,0 +1,495 @@
+{
+  "asOf": "2026-10-17",
+  "sources": [
+    "https://www.rnz.co.nz/news/politics_election-2026/feature/rnz-election-policy-guide-2026",
+    "https://www.rnz.co.nz/news/politics_election-2026/feature/crime-and-justice-policy-guide",
+    "https://www.rnz.co.nz/news/politics_election-2026/feature/immigration-policy-guide",
+    "https://www.rnz.co.nz/news/politics_election-2026/feature/energy-climate-and-environment-policy-guide",
+    "https://www.rnz.co.nz/news/politics_election-2026/feature/transport-policy-guide",
+    "https://www.rnz.co.nz/news/politics_election-2026/feature/health-policy-guide",
+    "https://www.rnz.co.nz/news/politics_election-2026/feature/maori-issues-policy-guide",
+    "https://www.rnz.co.nz/news/politics_election-2026/feature/tax-policy-guide",
+    "https://www.rnz.co.nz/news/politics_election-2026/feature/business-policy-guide",
+    "https://www.rnz.co.nz/news/politics_election-2026/feature/technology-policy-guide",
+    "https://www.rnz.co.nz/news/politics_election-2026/feature/governance-policy-guide",
+    "https://www.rnz.co.nz/news/politics_election-2026/feature/other-policy",
+    "https://www.rnz.co.nz/news/politics_election-2026/feature/education-policy-guide",
+    "https://www.rnz.co.nz/news/politics_election-2026/feature/welfare-family-youth-and-seniors-guide",
+    "https://www.rnz.co.nz/news/pacific/1778531/aid-versus-defence-parties-clash-on-foreign-policy-spending-priorities",
+    "https://www.rnz.co.nz/news/politics_election-2026/1839100/act-sets-out-plan-to-raise-retirement-age-cut-debt-spending-and-disability-benefits",
+    "https://www.rnz.co.nz/news/politics_election-2026/1272629/act-unveils-election-climate-policy-vows-to-scrap-net-zero-target-and-repeal-zero-carbon-act",
+    "https://www.rnz.co.nz/news/politics_election-2026/1718141/labour-releases-its-fiscal-plan-promises-pay-rise-for-care-and-support-workers",
+    "https://www.rnz.co.nz/news/politics_election-2026/1858931/we-don-t-work-for-ai-greens-vow-to-regulate-artificial-intelligence",
+    "https://www.rnz.co.nz/news/politics_election-2026/1133037/te-pati-maori-unveils-kiwi-tax-plan-with-new-5-percent-stamp-duty",
+    "https://www.rnz.co.nz/news/politics_election-2026/1494123/te-pati-maori-pledges-3-point-1-billion-plan-for-kai-sovereignty-if-elected",
+    "https://nzpol.nz/party/national/",
+    "https://nzpol.nz/party/labour/",
+    "https://nzpol.nz/party/green/",
+    "https://nzpol.nz/party/act/",
+    "https://nzpol.nz/party/nzfirst/",
+    "https://nzpol.nz/party/opportunity/",
+    "https://nzpol.nz/party/tpm/",
+    "https://www.labour.org.nz/our-policies/",
+    "https://www.labour.org.nz/policy",
+    "https://www.national.org.nz/policies",
+    "https://www.greens.org.nz/manifesto_2026",
+    "https://www.greens.org.nz/policy",
+    "https://www.act.org.nz/policies",
+    "https://www.act.org.nz/policies/law-and-order",
+    "https://www.nzfirst.nz/news",
+    "https://www.maoriparty.org.nz/policies",
+    "https://www.opportunity.org.nz/policy",
+    "https://www.opportunity.org.nz/smart_on_crime",
+    "https://www.opportunity.org.nz/healthy_people",
+    "https://www.opportunity.org.nz/honouring_te_tiriti",
+    "https://policy.nz/2026/party-vote/policies/law-justice-and-government",
+    "https://policy.nz/2026/party-vote/policies/defence-and-foreign-affairs",
+    "https://policy.nz/2026/party-vote/policies/education",
+    "https://partymap.co.nz/compare/foreign-affairs/",
+    "https://partymap.co.nz/compare/health/",
+    "https://partymap.co.nz/compare/family-social/",
+    "https://partymap.co.nz/parties/opportunity/",
+    "https://www.1news.co.nz/2026/10/04/labour-reveals-vaunted-fiscal-plan-heres-the-key-details/",
+    "https://www.1news.co.nz/2026/08/23/act-releases-election-treaty-policy-whats-in-it-and-whats-gone/",
+    "https://www.1news.co.nz/2026/08/24/seymour-and-peters-hit-back-as-luxon-moves-on-under-16s-social-media-ban/",
+    "https://www.1news.co.nz/2026/09/26/nz-first-vow-to-immediately-abolish-waitangi-tribunal-if-elected/",
+    "https://www.nzherald.co.nz/nz/politics/election-2026-act-promises-big-cuts-to-public-spending-and-aid-to-drive-debt-lower-but-no-income-tax-cuts/JJFEGDPWDJDCJEKQAHXHGISJ7A/",
+    "https://www.nzherald.co.nz/nz/politics/green-party-election-housing-policy-rent-increase-caps-a-rental-wof-and-tens-of-thousands-of-new-public-homes/6BHQQUJBEFBWVKLYH6BOND5JNE/",
+    "https://www.nzherald.co.nz/nz/politics/election-2026-green-party-releases-drinking-water-oceans-and-rivers-policy/V3QS5ZKVLZGHHBKDRSQHRKYJEM/",
+    "https://www.nzherald.co.nz/nz/politics/election-2026-nz-first-leader-winston-peters-to-unveil-new-policy-at-campaign-launch-to-conclude-convention/ZA3PMUUM7JDOTPOWJCM62BE7XU/",
+    "https://www.nzherald.co.nz/nz/politics/election-2026-winston-peters-raises-prospect-of-revisiting-conversion-practices-law/GVJNIGOTGVDPLIWNO2S2GZZVNU/",
+    "https://www.nzherald.co.nz/nz/politics/election-2026-labour-criticises-govt-crime-policies-as-bumper-stickers-but-wont-commit-to-repealing-them/7HDLQATJZFF3ZKOUQ5YFY2GYPQ/",
+    "https://www.nzherald.co.nz/nz/politics/election-2026-opportunity-party-releases-its-five-bottom-lines-with-one-big-policy-missing/WP3XKEAUMVHSJOPPFPPEWNHJB4/",
+    "https://www.stuff.co.nz/politics/361037204/te-pati-maori-calls-takatapui-commission-and-access-puberty-blockers",
+    "https://www.stuff.co.nz/politics/361045172/nz-election-2026-live-updates-politics-campaign-news",
+    "https://thespinoff.co.nz/politics/30-09-2026/how-do-the-different-parties-fare-on-disability-issues-this-election",
+    "https://thespinoff.co.nz/politics/05-08-2026/if-ai-is-about-to-upend-everything-wheres-all-the-ai-policy",
+    "https://www.interest.co.nz/public-policy/137743/winston-peters-says-nz-first-wants-break-power-gentailers-%E2%80%98so-they-can-no",
+    "https://www.interest.co.nz/property/137799/green-party-housing-policy-pledges-remove-interest-deductibility-landlords-build",
+    "https://www.realestate.co.nz/news/property-market-news/market-insights-and-analysis/nz-election-2026-what-every-party-plans-for-housing",
+    "https://www.nothandco.com/news/who-wants-what-nzs-2026-election-immigration-policies-party-by-party",
+    "https://oece.nz/newsroom/politics/election-2026-early-childhood-education-policy-guide/",
+    "https://norml.org.nz/tokethevote-nz-political-party-cannabis-policies-for-the-2026-general-election/",
+    "https://huhana62.substack.com/p/all-the-7-polling-political-party",
+    "https://www.ruralnewsgroup.co.nz/rural-news/rural-general-news/election-2026-party-policies-primary-sector-farmers",
+    "https://nzgameanimalcouncil.org.nz/whos-got-your-vote-in-2026/",
+    "https://www.scoop.co.nz/stories/PA2608/S00038/act-commits-to-strengthening-end-of-life-choice.htm",
+    "https://www.scoop.co.nz/stories/GE2609/S00053/mental-health-foundation-election-scorecard-now-available.htm",
+    "https://www.scoop.co.nz/stories/PA2609/S00249/new-firearms-system-takes-effect.htm",
+    "https://www.phcc.org.nz/briefing/election-2026-political-polarisation-energy-and-climate-except-solar",
+    "https://www.healthychristchurch.org.nz/news/resources-and-information/2026/9/political-party-positions-on-tobacco-alcohol-and-unhealthy-food-policies",
+    "https://waateanews.com/2026/09/02/election-2026-te-pati-maori-unveils-220m-plan-to-make-te-tiriti-obligations-enforceable/",
+    "https://www.teaonews.co.nz/2026/01/27/election-2026-te-pati-maori-to-campaign-on-abolishing-prisons-labour-dead-set-against-it/",
+    "https://anthill.co.nz/research/nz-party-energy-platforms-2026",
+    "https://whichparty.nz/topics/digital",
+    "https://nztax.tools/tax-insights/nz-election-2026-tax-policies-compared/"
+  ],
+  "topics": [
+    {
+      "id": "crime",
+      "label": "Law and order / justice",
+      "keywords": ["crime", "police", "gangs", "sentencing", "prison", "justice", "youth offending", "three strikes", "burglary", "safety"],
+      "parties": {
+        "nat": "Would abolish 'good character' assessments at sentencing for all sexual offending, rewrite consent law so there must always be a 'yes', and fund a dedicated Auckland Transport Police team of 50 officers at $7m a year from Budget 2027. Keeps its current settings: Three Strikes, the 40% cap on sentence discounts and the Gangs Act 2024 patch ban.",
+        "lab": "Would keep the gang patch ban and introduce a corporate homicide offence carrying life imprisonment. Justice spokesperson Camilla Belich has called the coalition's crime laws 'bumper stickers' but has not committed to repealing Three Strikes or move-on orders; a full justice policy had not been released as at mid-October.",
+        "grn": "Manifesto commits to preventing crime by addressing its drivers and reforming the justice system toward rehabilitation, criticising the government for 'packing prisons'. Co-leader Marama Davidson has said the party is open to funding the Mongrel Mob to deliver drug-prevention programmes.",
+        "act": "Would add burglary to Three Strikes with a minimum three-year sentence on a third conviction, deport serious offenders who are not citizens, and spend $2m on 20 relocatable noise cameras to ticket loud cars, starting in Tāmaki. Would replace three-yearly Working with Children checks with a continuously monitored card.",
+        "nzf": "No dedicated 2026 law-and-order package published as at 17 October. Related announcements are a statutory Combat Sports Commission to license events and block criminal influence (15 October) and a nationwide ban on public sale and use of fireworks (9 October).",
+        "top": "'Smart on Crime' would trigger voluntary early intervention from a child's first Oranga Tamariki Report of Concern, expand the Young Adult List, Te Pae Oranga and the Alcohol and Other Drug Treatment Court, complete the national rollout of specialist sexual violence courts, and expand prison trade training and post-release mentoring. Would regulate recreational cannabis to undercut organised crime.",
+        "tpm": "Would abolish prisons by 2040 in favour of community-led alternatives, establish a Māori Justice Authority, shut youth justice residences and military-style boot camps, and reform laws that criminalise poverty."
+      }
+    },
+    {
+      "id": "immigration",
+      "label": "Immigration",
+      "keywords": ["immigration", "migrants", "visa", "residency", "citizenship", "overstayers", "refugees", "work visa", "accredited employer"],
+      "parties": {
+        "nat": "First-100-days commitment to prioritise and expedite work and visitor visas for partners of New Zealand citizens, funded to start by July 2027. Welfare changes from April 2028 include a five-year wait before new residents can access benefits. No full immigration policy had been released as at mid-October.",
+        "lab": "Would set immigration levels through a Government Policy Statement tied to housing, jobs and infrastructure, lengthen the wait for permanent residence from two to four years, let migrant workers switch accredited employers after three months, and give children born to undocumented parents a path to citizenship after 10 years. Pacific Islands Forum citizens would get visa-free NZeTA entry for up to three months.",
+        "grn": "A Tiriti-based system with an amnesty pathway for overstayers, removal of single-employer work visas, a requirement that temporary migrants are paid no less than locals, a higher refugee quota, climate-displacement provisions in immigration law and a Pacific passport for free movement. No numbers published.",
+        "act": "Would replace the Permanent Resident Visa with a five-year travel facility requiring 730 days in New Zealand in any rolling five years, impose a five-year benefit stand-down on new residents, charge temporary work visa holders a $6-a-day infrastructure surcharge (about $80m a year), expire AEWV occupation lists annually, deport serious non-citizen offenders and create a farm-worker visa.",
+        "nzf": "Would hold a referendum on capping resident visas at 20,000 a year, scrap the Accredited Employer Work Visa for a 'shortage-led' skilled visa tied to occupation and region (11 October), lift the wait for citizenship to 10 years and permanent residence to five, impose a 10-year stand-down before benefits, and restrict NZ Super (from 2029) and voting to citizens. Would end work visas for most retail jobs.",
+        "top": "Proposes a population policy for stable, long-term immigration balanced against net migration, treating immigration as a source of expertise and investment, and would forgive student loan interest for returning expats. No targets or visa settings published.",
+        "tpm": "No published 2026 policy found."
+      }
+    },
+    {
+      "id": "economy",
+      "label": "Economy and cost of living",
+      "keywords": ["economy", "cost of living", "tax", "capital gains tax", "wealth tax", "debt", "surplus", "groceries", "supermarkets", "inflation"],
+      "parties": {
+        "nat": "No new taxes and no income tax cuts until the books are in surplus; its fiscal plan forecasts a $4.0b surplus in 2028/29 with debt peaking at 43.9% of GDP in 2027/28 and day-to-day spending capped below 30% of GDP. Would delay the next fuel tax rise a year, keep the 20% Investment Boost, test a Foodstuffs split within 100 days and aim to double exports by 2034.",
+        "lab": "A 28% tax on gains from investment and commercial property sold after 1 July 2027 (family home, farms, KiwiSaver, shares and small businesses excluded), ring-fenced for health. Fiscal plan (4 October) adds about $24b of spending within a $2.4b operating allowance, targets surplus in 2028/29 and net debt below 20% of GDP, freezes fuel tax for three years and bans price gouging on essentials by large firms.",
+        "grn": "A 2.5% annual tax on net wealth above $10m (family home exempt), tax on gifts and inheritances above $1m, a 33% company rate for the largest firms, a $10,000 tax-free threshold and a higher rate above $160,000. A $6b four-year package it says creates 64,000 jobs, plus a public supermarket chain (about $2.8b) built by forcing the two big chains to sell 120 stores, and price-gouging fines up to $10m.",
+        "act": "Fiscal plan (11 October) cuts spending and foreign aid to take debt $12.4b lower, with no income tax cuts; its main tax change is removing tax on KiwiSaver investment earnings (about $2.4b over four years). Would reduce 43 government departments to 19 and make personal crypto gains tax-free after a year's holding.",
+        "nzf": "Would cut company tax from 28% to 20% for firms with turnover under $30m (about $1b a year), buy back BNZ and merge it with Kiwibank, split Foodstuffs into two co-operatives, break up the power gentailers, return 50% of mining royalties to their regions and enrol every citizen in KiwiSaver at birth with $1,000.",
+        "top": "'Tax Reset': a tax-free citizen's income of $19,400 a year (about $370 a week) for adults earning under $350,000, funded by a land value tax of 1.75% on urban and 0.5% on rural land, with income tax at 28% to $50,000, 34% to $200,000 and 39% above. Leader Qiulae Wong says the land tax and citizen's income are a 10-year shift, not first-term bottom lines; stronger Commerce Commission powers are a bottom line.",
+        "tpm": "'Kiwi tax plan': no income tax on the first $30,000, a wealth tax of 1.5% over $2m, 2% over $5m and 2.5% over $10m, company tax back to 33%, a new 5% stamp duty on residential sales (first-home buyers under $1m exempt) and land-banking and vacant-house taxes. A $3.1b kai sovereignty plan includes an Income Tax Kai Credit worth up to eight weeks of food for people earning $60,000 or less."
+      }
+    },
+    {
+      "id": "transport",
+      "label": "Transport and infrastructure",
+      "keywords": ["transport", "roads", "public transport", "buses", "trains", "rail", "fuel tax", "infrastructure", "light rail", "harbour crossing"],
+      "parties": {
+        "nat": "Would fully fund the Belfast to Pegasus motorway and Woodend bypass ($800m in its first Budget, construction from 2027), set aside $1.75b in Budget 2028 to start Mill Road Stage 1 in late 2028 plus $100m for route protection, and $50m for a Rolleston freight hub. Would delay the next fuel tax rise a year, repeal the 2020 ban on council car-parking minimums and not pick a second Auckland harbour crossing option before 2027.",
+        "lab": "A $20-a-week cap on bus and train fares in Auckland, Wellington and Christchurch ($10 elsewhere) from 1 July 2027, funded from 1% of the National Land Transport Fund, and a three-year fuel tax freeze. Would force airlines to show full fares with automatic refunds for major changes and give independent mechanics a right to repair modern cars.",
+        "grn": "Free buses and trains for children, students, apprentices, Community Services Card holders and Total Mobility users, with a $2 maximum fare for everyone else. Would build light rail or mass rapid transit in Auckland, Wellington and Christchurch, an overnight Auckland-Wellington train, Christchurch-Dunedin passenger rail and extend Te Huia to Tauranga, within a transport plan costed at about $23.9b.",
+        "act": "Would ring-fence road maintenance money in the National Land Transport Fund, publish the cheapest safe road design alongside the preferred one, stop spending on roadside art and sculptures, and scrap vehicle emissions and age rules it calls 'anti-car'.",
+        "nzf": "Would finish the Mill Road extension in South Auckland and put the Auckland harbour crossing out to open tender now without another report. Fast-tracked housing would be approved only once roads, water and wastewater are funded and deliverable (14 October).",
+        "top": "Free public transport, a 30-year infrastructure plan locked into law with 60% of spend on maintenance, led by an Infrastructure Commission.",
+        "tpm": "Free public transport for students and transport affordability under its cost-of-living policy; no detailed transport plan published."
+      }
+    },
+    {
+      "id": "treaty",
+      "label": "Treaty, co-governance and Māori affairs",
+      "keywords": ["treaty", "te tiriti", "co-governance", "waitangi tribunal", "māori seats", "maori", "te reo", "iwi", "marae", "undrip"],
+      "parties": {
+        "nat": "No standalone 2026 Treaty policy published. Christopher Luxon has not committed to ACT's or NZ First's plans to wind up or abolish the Waitangi Tribunal, and National voted down ACT's Treaty Principles Bill in 2025.",
+        "lab": "Would not make Waitangi Tribunal recommendations binding, would restore Treaty duties on school boards, fund Māori health providers directly rather than rebuild Te Aka Whai Ora, spend $21m a year on Māori-led trades training and restore a 5% government procurement target for Māori businesses.",
+        "grn": "A $2.4b marae trust owned and governed by hapū and iwi, and an extra $200m for te reo Māori including $30m a year more for teacher education and $20m for Te Taura Whiri and Te Mātāwai. Manifesto frames all policy as Tiriti-based.",
+        "act": "'One Law for All' (23 August): write parliamentary sovereignty, rule of law and equality before the law into the Constitution Act, put 'need, not race' into law, let courts use tikanga only where Parliament allows, require Cabinet to state Treaty duties before drafting bills, and add property rights to the Bill of Rights. Would finish historical claims then wind up the Waitangi Tribunal and merge the Māori, Pacific, women and youth ministries into Culture and Heritage; the Treaty Principles Bill and referendum are dropped.",
+        "nzf": "Would immediately abolish the Waitangi Tribunal and replace it with a Treaty of Waitangi Completion Commission to finalise pre-2008 claims (26 September), hold a binding citizens-only referendum on the Māori seats, and disestablish Auckland's Houkura (Independent Māori Statutory Board).",
+        "top": "Would uphold existing settlements and finish outstanding historical ones, restore the pre-2025 customary marine title settings, make Treaty analysis a visible part of lawmaking and run a citizens'-assembly-style national conversation on Te Tiriti's constitutional place. Opposed the Treaty Principles Bill; says Treaty findings should not bind Cabinet.",
+        "tpm": "Would entrench Te Tiriti, make Waitangi Tribunal recommendations binding and create an independent Te Tiriti Commission able to pause Cabinet decisions on serious breaches, backed by a $220m Matike Mai Fund over four years toward constitutional transformation by 2040 and a UNDRIP action plan in the first 100 days. Campaigning for the electorate vote only in the Māori seats."
+      }
+    },
+    {
+      "id": "energy",
+      "label": "Energy and fuel",
+      "keywords": ["energy", "power bills", "electricity", "gentailers", "solar", "oil and gas", "petrol", "fuel", "renewables", "lines companies"],
+      "parties": {
+        "nat": "A nine-point energy plan including a Home Energy Fund of low-interest loans repaid through rates for solar, batteries, insulation and heat pumps, solar installation without council consent, connection sign-off within two working days and a right to sell surplus power to any retailer. Opposes breaking up the gentailers and would review lines-company regulation.",
+        "lab": "'SolarSaver' subsidies and two loan schemes to remove the upfront cost of solar, running within 12 months of taking office; fuel tax frozen for three years; weekly fuel price reporting and fairer supply for independent stations. Says gentailer separation is 'not off the table' and would reinstate the offshore oil and gas exploration ban.",
+        "grn": "A new state-owned power company (reported at $980m over four years) to build renewables and compete with the gentailers, with separation of the gentailers as a backstop if level-playing-field rules fail; extend the price-gouging ban to power and fuel; reinstate the offshore oil and gas ban with existing permits revoked; one-year pause on consents for new large data centres.",
+        "act": "Keep the gentailers whole, let households sell surplus solar or battery power to any buyer at market price, let private investors build grid connections, lift solar repayment rates and cut the carbon tax; favours more supply through exploration and deregulation.",
+        "nzf": "About $1b to survey offshore basins for oil and gas, splitting the gentailers into separate generation and retail companies as its first coalition demand, more mining with fast-track consents, and 50% of mining royalties returned to the regions.",
+        "top": "'Abundant Energy': a cross-party target to add 30GW of generation by 2050, ring-fence government power-generation profits for renewables, merge the energy regulators and cut 29 distributors to no more than eight, and a fund to help factories move off fossil fuels.",
+        "tpm": "A $1b Energy Sovereignty Fund for Māori and community ownership of new renewable assets, a national energy independence plan and a Māori energy workforce. Opposes the LNG import terminal and would withdraw existing onshore and offshore oil and gas permits within five years."
+      }
+    },
+    {
+      "id": "farming",
+      "label": "Agriculture and rural",
+      "keywords": ["farming", "farmers", "agriculture", "rural", "dairy", "fonterra", "fertiliser", "irrigation", "methane", "primary sector"],
+      "parties": {
+        "nat": "19 national standards so routine farm work (drains, tracks, fertiliser, worker housing, small quarries) needs no council consent; $300m in low-cost loans for farm water storage; up to 70 graduate rural vets a year from 2027 ($3.4m); $16m for pest control; fertiliser supply agreements and a $10m local nitrogen fund; $40.5m for catchment groups. Keeps agriculture out of the ETS; India FTA takes effect 20 October.",
+        "lab": "Frames rural costs as a 'cost-of-farming crisis' and points to its Small Business Action Plan (faster payment, $10,000 asset write-off). Farms are excluded from its 28% capital gains tax and it has stepped away from pricing agricultural emissions. Would restore 43 rural school bus routes where possible.",
+        "grn": "'Drink, Swim, Fish' would phase out synthetic nitrogen fertiliser, reduce stocking rates catchment by catchment and lower the nitrate limit for drinking water, alongside diversification away from emissions-intensive farming. Would cancel fast-track mining consents.",
+        "act": "Would ease farm methane rules, create a dedicated farm-worker visa, remove Te Mana o te Wai from resource consenting, create a separate Hauraki Gulf fishing zone and set a combined daily shellfish bag limit of 10.",
+        "nzf": "Would let independent processors buy up to 500 million litres of Fonterra milk a year (10 times the current cap) if they make value-added product in New Zealand (20 August), review Zespri's kiwifruit export monopoly, return 50% of mining royalties to regions, abolish regional councils and keep funding flood protection, water storage and irrigation through the Regional Infrastructure Fund.",
+        "top": "A methane cap-and-trade market so farms can sell emissions cuts rather than only reduce stock, a 25% tax credit on new technology investment for small businesses including farms, R&D funding for regional polytechnics and agricultural science, and a 0.5% land value tax on rural land.",
+        "tpm": "A $3.1b kai sovereignty plan including $100m seed funding for Māori-owned supermarket chains and regenerative and organic farming training, and access for Māori collectives to Crown or council land. Opposes genetically engineered food and would ban seabed mining."
+      }
+    },
+    {
+      "id": "dental",
+      "label": "Dental care",
+      "keywords": ["dental", "dentist", "teeth", "oral health", "free dental"],
+      "parties": {
+        "nat": "No published 2026 policy found.",
+        "lab": "No published 2026 policy found.",
+        "grn": "Free, publicly delivered dental care for everyone, funded by its wealth tax, as part of moving privately funded health services including dental into public ownership.",
+        "act": "No published 2026 policy found.",
+        "nzf": "No published 2026 policy found.",
+        "top": "No published 2026 policy found.",
+        "tpm": "No published 2026 policy found."
+      }
+    },
+    {
+      "id": "mental",
+      "label": "Mental health",
+      "keywords": ["mental health", "addiction", "wellbeing", "counselling", "suicide", "psychologist"],
+      "parties": {
+        "nat": "No new 2026 campaign commitment; in government it set a 10-year Mental Health and Wellbeing Strategy 2026-2036 and its Mental Health Foundation scorecard response pointed to that record while supporting more specialist mental health and addiction services.",
+        "lab": "Says it will set out a full mental health and addiction policy in its manifesto, with more detail to come; as at 17 October only general support for investment in wellbeing promotion had been stated.",
+        "grn": "Would address the drivers of poor mental health and provide culturally relevant care, and move privately funded mental health services into fully funded public ownership. No funding figures published.",
+        "act": "Would reassess disability and health-related benefit claims using a medical certificate to bring mental-health-related claims back toward their pre-pandemic share, saving $653m over four years. Marked itself 'undecided' on specific Mental Health Foundation scorecard questions.",
+        "nzf": "'Make NZ Healthy' (20 September) would fund research into whether nutrition can prevent or treat mental illness as part of a prevention and metabolic-health focus.",
+        "top": "No mental-health-specific commitment; its cross-party 10-year Health Plan would lift health spending from 7.4% to 9% of GDP with more going to primary and community care.",
+        "tpm": "No standalone mental health policy; its health policy would rebuild a Māori-led health authority focused on prevention, and a $200m Takatāpui Commission would fund wellbeing services for takatāpui and rainbow communities."
+      }
+    },
+    {
+      "id": "disability",
+      "label": "Disability support",
+      "keywords": ["disability", "disabled", "whaikaha", "accessibility", "supported living", "carers", "total mobility"],
+      "parties": {
+        "nat": "No standalone 2026 disability manifesto. Points to $1.1b over five years for Disability Support Services, $240m over four years for residential care from 1 July 2025, a nationally consistent assessment approach from February 2026 and restored flexible-funding rules from March 2026, plus $23m for 20 specialist classrooms and three new specialist schools.",
+        "lab": "Would repeal the Disability Support Services Act passed in September 2026 and replace it with rights-based legislation drafted alongside disability communities.",
+        "grn": "A disability rights law based on Te Tiriti with enforceable accessibility standards, income support for disability-related living and medical costs regardless of relationship status, universal design standards for housing, and restoring the Total Mobility taxi subsidy to 75% from 65%.",
+        "act": "Would reassess disability support eligibility using a medical certificate and bring mental-health claims back toward the pre-pandemic share, saving $653m over four years.",
+        "nzf": "No published 2026 policy found.",
+        "top": "A citizen's income of $19,400 a year would replace benefits including the Supported Living Payment, with a universal disability allowance of around $6,000 a year plus needs-based top-ups; would co-design accessibility legislation with enforceable standards.",
+        "tpm": "Māori-led disability services with decision-making devolved to whānau, hapū and iwi, easier access to support, and restoring and expanding Te Aka Whai Ora."
+      }
+    },
+    {
+      "id": "childcare",
+      "label": "Early childhood and childcare",
+      "keywords": ["childcare", "early childhood", "ece", "kindergarten", "daycare", "kōhanga reo", "kohanga", "parental leave", "20 hours"],
+      "parties": {
+        "nat": "Would end screens and individual devices in early childhood education, introduce a School Start Check before primary school and developmental milestones reported to parents, extend paid parental leave from 26 to 30 weeks, and open a KiwiSaver account with $1,500 for every baby from July 2027.",
+        "lab": "No 2026 early childhood policy published; its KiwiSaver plan includes a government contribution during paid parental leave.",
+        "grn": "End public funding for private for-profit centres by 2028, cap parent fees at $10 a day above the 20 free hours, and from 2029 fund community centres for 35 free hours a week from six months to school age, with pay parity for kaiako. Also a universal child payment of $140 a week for children aged 0-2.",
+        "act": "No published 2026 policy found.",
+        "nzf": "A Kiwi Kids Grant of $5,000 a year, tax-free and not means-tested, for the first three years of each of a family's first three children ($15,000 per child), and KiwiSaver enrolment at birth with $1,000.",
+        "top": "Minimum ratios of 1:3 for under-twos, 1:5 for 24-36 months and 1:8 for over-threes, 80% qualified teachers in teacher-led services, quality-based contracting instead of licensing, Australian space-per-child standards and more core funding for Playcentre, kōhanga reo, kindergartens and Pacific language nests.",
+        "tpm": "A Te Kōhanga Reo Act with locked annual baseline funding, a $20m-a-year capital fund, $50m for about 80 kōhanga needing rebuilds, and 20 new kōhanga reo within three years."
+      }
+    },
+    {
+      "id": "wages",
+      "label": "Minimum wage and workers' rights",
+      "keywords": ["minimum wage", "wages", "pay equity", "unions", "workers", "employment law", "kiwisaver", "care workers", "living wage"],
+      "parties": {
+        "nat": "Would lift the adult minimum wage yearly roughly in line with inflation (no freeze), offer a first-hire package for small firms, lighter penalties for genuine paperwork errors and a faster track for minor employment disputes, and extend paid parental leave to 30 weeks.",
+        "lab": "Restore pay equity law within 100 days and pay about 65,000 care and support workers an interim $4 an hour more from 1 January 2027 (about $8,320 a year, $2.5b over four years). Compulsory employer KiwiSaver from 1 July 2028 rising to 6% by 2032, and migrant workers able to switch employers after three months.",
+        "grn": "Restore the pre-2025 pay equity regime and set aside about $1.1b a year for the care and support workers' settlement; automatic union membership for new workers; a guaranteed job, study or training place for 16-24-year-olds unemployed six months ($4.9b over four years); $380 a week placement pay for student nurses, teachers, midwives and social workers.",
+        "act": "Freeze the adult minimum wage for three years, introduce a lower training wage for under-20s in their first year with an employer, make union-fee deductions voluntary and shorten the window to lodge a personal grievance.",
+        "nzf": "Raise the adult minimum wage by at least inflation each year for three years (10 October) and make the $50-a-week in-work tax credit top-up permanent with a further $70.",
+        "top": "No minimum wage position published; a $19,400-a-year citizen's income for adults and compulsory KiwiSaver rising to 6% each from employee and employer.",
+        "tpm": "Cost-of-living policy commits to lifting incomes 'so people can live with dignity' and strengthening welfare so whānau are not penalised for being poor; no minimum wage figure published."
+      }
+    },
+    {
+      "id": "business",
+      "label": "Small business and company tax",
+      "keywords": ["small business", "company tax", "sme", "gst", "investment boost", "red tape", "compliance", "commerce commission", "invoices"],
+      "parties": {
+        "nat": "A 47-point small business plan to cut compliance costs, keeping the 20% Investment Boost instant deduction, reviewing the $60,000 GST registration threshold but not lifting it until paid for, no new taxes, and trade deals prioritised with seven countries toward doubling exports by 2034.",
+        "lab": "Lift the GST registration threshold from $60,000 to $80,000 (about 35,000 operators), keep a $10,000 instant write-off for small firms while dropping the 20% Investment Boost for large firms, require big businesses to pay invoices up to $25,000 within 15 days, and target 15% of government contracts to small New Zealand firms.",
+        "grn": "A 33% company tax rate for the largest firms, rescoping the instant asset deduction toward productive low-carbon investment, market rent reviews that can fall as well as rise for small business leases, and council auctions of city shop leases empty for more than a year.",
+        "act": "Cut 43 government departments to 19, a one-stop consenting shop for new supermarkets, accept food labels already used in the UK, EU or US, clearer stablecoin rules and a fintech sandbox, and bar compulsory karakia as a consent condition.",
+        "nzf": "Cut company tax from 28% to 20% for firms with turnover under $30m (about $1b a year, 24 September), a Marsden Point Special Economic Zone with RMA relief, a BNZ buy-back merged with Kiwibank, and splitting Foodstuffs into two co-operatives.",
+        "top": "A 25% tax credit on new investments by small businesses, stronger Commerce Commission powers (an election bottom line), and personal income tax at 28% to $50,000, 34% to $200,000 and 39% above.",
+        "tpm": "Return company tax to 33%, $100m seed funding for Māori-owned supermarket chains, targeted tax credits and extra funding to tackle tax evasion and fraud."
+      }
+    },
+    {
+      "id": "defence",
+      "label": "Defence and foreign affairs",
+      "keywords": ["defence", "military", "foreign affairs", "foreign aid", "pacific", "nzdf", "aukus", "palestine", "neutrality", "china"],
+      "parties": {
+        "nat": "Would continue lifting defence spending to 2% of GDP (about $12b) over eight years, with Budget 2026 adding $3.5b this year. Would cut aid outside the Pacific by 10% over three years ($431.2m) plus $45.6m in MFAT savings to fund Pharmac and cancer screening.",
+        "lab": "Would raise aid toward 0.7% of GNI 'as fiscal conditions allow' (a horizon commitment with no year-by-year targets), support a 'tempered' defence increase focused on disaster relief but not at the cost of aid, and shift Pacific spending toward climate resilience.",
+        "grn": "A foreign policy of peace, international law, self-determination and climate action, including a centre to train international peacekeepers; no costed defence commitment published.",
+        "act": "Cut foreign aid to 2017 levels except support for Ukraine, saving about $283m a year (more than $1.1b over four years from 2028).",
+        "nzf": "A national interest test before accepting UN or international agreements that limit domestic decision-making. No standalone 2026 defence policy; Winston Peters called National's aid cut 'desperate and dangerous'.",
+        "top": "No published 2026 policy found.",
+        "tpm": "Declare Aotearoa militarily neutral, review and withdraw from military alignments that undermine sovereignty, refocus the Defence Force on protection, disaster response and Pacific support, and hold war criminals to account."
+      }
+    },
+    {
+      "id": "water",
+      "label": "Water and local government",
+      "keywords": ["water", "three waters", "local water done well", "councils", "rates", "rates cap", "regional councils", "bed tax", "local government"],
+      "parties": {
+        "nat": "A council rates cap with a 2-4% target range councils must consider from July 2027 and full effect from July 2029, excluding water charges; Local Water Done Well continues. From July 2027 leftover International Visitor Levy money goes to councils by overseas guest nights, and councils would lose sign-off on some building work.",
+        "lab": "Would 'slow right down' the coalition's council amalgamation reforms and not push changes without community consultation; criticises Local Water Done Well but says undoing it would add cost; wants to see the rates cap legislation before taking a position. Would let 16- and 17-year-olds vote in local elections.",
+        "grn": "Let councils set their own visitor bed levy with a higher rate for Airbnb-style rentals, backed by a national short-stay rental register. Freshwater policy would lower the nitrate limit for drinking water and phase out synthetic nitrogen fertiliser.",
+        "act": "Pay councils $1 per guest night from GST already collected instead of a bed tax, take councils out of building consents and give them 50% of GST on new homes, remove Te Mana o te Wai from consenting, and stop councils using extreme climate scenarios to restrict housing.",
+        "nzf": "Abolish regional councils, disestablish Auckland's Houkura, charge overseas visitors a bed levy in Auckland and Queenstown, approve fast-tracked housing only once water and wastewater are funded, and spend $50m-$100m over time on Waikato koi carp control.",
+        "top": "A 30-year infrastructure strategy led by an Infrastructure Commission with 60% of spend on maintenance; 'Healthy Land and Water' policy; citizens' assemblies on major decisions.",
+        "tpm": "Assert Māori rights and authority over freshwater and stop freshwater decisions made without Māori consent; ban seabed mining."
+      }
+    },
+    {
+      "id": "tertiary",
+      "label": "Tertiary education and student support",
+      "keywords": ["tertiary", "university", "student loan", "student allowance", "fees free", "apprenticeships", "polytechnic", "students"],
+      "parties": {
+        "nat": "Cut the compulsory student loan repayment rate from 12% to 10% from April 2027 for borrowers who stay in New Zealand, with higher interest and tougher collection for overseas-based borrowers. Fees Free ends under Budget 2026.",
+        "lab": "Write off 10% of eligible student loan balances from 1 April 2027 for graduates who stay in New Zealand (balances of $2,000 or less written off entirely; Fees Free recipients excluded), and reset Apprenticeship Boost to two years from 2028 with a $1,000 toolbox grant.",
+        "grn": "Restore Fees Free and a universal student allowance and work toward debt-free tertiary study; $380 a week placement pay for teaching, nursing, midwifery, social work, vet and dentistry students plus $1,500 for relocation ($311m over four years); extend the Winter Energy Payment to students.",
+        "act": "Make university student services fees an opt-in menu (up to about $4,000 off a three-year degree loan), prevent universities allocating support by ethnicity, and give Year 11 students $500 in a controlled investment account.",
+        "nzf": "No published 2026 policy found.",
+        "top": "Forgive student loan interest for New Zealanders who return from overseas, and fund regional polytechnics and agricultural science as part of a generational R&D increase.",
+        "tpm": "$30m a year to restore the Māori-language teacher scheme (Te Ahu o te Reo Māori), a Māori-led job training programme and fund, and increased student support."
+      }
+    },
+    {
+      "id": "seniors",
+      "label": "Seniors, aged care and super detail",
+      "keywords": ["superannuation", "super", "retirement age", "seniors", "aged care", "rest home", "pension", "kiwisaver", "retirement villages"],
+      "parties": {
+        "nat": "No change to the superannuation age or settings this term, confirmed with its October fiscal plan; Nicola Willis has agreed to a cross-party retirement accord with Labour for 2029. KiwiSaver would become compulsory with contributions rising to 6% each by 2032; free bowel screening from age 50 and breast screening to 74 by 2029.",
+        "lab": "No change to the super age and no means testing. Compulsory employer KiwiSaver contributions from 1 July 2028 rising to 6% by 2032, extended to people working past 65. Retirement villages would have to pay departing residents within three months, legislated within 100 days.",
+        "grn": "Would move privately funded aged care into fully funded public ownership; seniors policy otherwise general. No superannuation change published.",
+        "act": "Raise the super age by three months a year to reach 67 by 2035, with early access for people with long stretches of hard physical work; pause NZ Super Fund contributions; stop taxing KiwiSaver earnings and end the government top-up where an employer already contributes.",
+        "nzf": "NZ Super only for citizens from 2029, with three years to obtain citizenship; no rise in the super age and no other eligibility changes. KiwiSaver compulsory from birth with a $1,000 Crown contribution.",
+        "top": "A means-tested citizen's income of $19,400 a year would replace NZ Super and other assistance for people earning under $350,000, alongside compulsory 'KiwiSaver 2.0' with employee and employer contributions rising to 6% each.",
+        "tpm": "No published 2026 policy found."
+      }
+    },
+    {
+      "id": "family",
+      "label": "Families, Working for Families and child payments",
+      "keywords": ["families", "working for families", "child payment", "baby bonus", "benefits", "welfare", "jobseeker", "kids", "school costs"],
+      "parties": {
+        "nat": "A $1,500 'Baby Boost' KiwiSaver kick-start for every newborn from 1 July 2027, paid parental leave extended from 26 to 30 weeks with parents able to take leave at the same time, and $451.8m to keep the school lunch programme running until the next election. Welfare: random drug testing for Jobseeker recipients (10,000 tests a year initially) and a lower rate after two years on benefit from April 2028.",
+        "lab": "No Working for Families change announced. Would cut back-to-school costs with a uniform law by Term 1 2028 and school lunches at $5 a meal ($6.50 for Years 9-13) from Term 1 2028, pass a 'Fair Go for Families' law banning junk insurance and hidden fees, and give three free GP visits a year and free prescriptions.",
+        "grn": "A universal child payment of $140 a week for all children aged 0-2, food-bank funding lifted from $8m to $25m, a doubled Work and Income food-grant cap and $150m a year for community food projects.",
+        "act": "After four months on Jobseeker, rent, food and power would be paid by card with no alcohol, tobacco, gambling or cash; higher work expectations for welfare recipients; $500 in an investment account for every Year 11 student.",
+        "nzf": "A Kiwi Kids Grant of $5,000 a year for the first three years of each of a family's first three children, and a permanent Working for Families in-work credit lift of $120 a week ($50 top-up made permanent plus $70, costed at $500m-$600m a year).",
+        "top": "A tax-free citizen's income of $19,400 a year (about $370 a week) for every adult citizen and permanent resident earning under $350,000, replacing many existing benefits.",
+        "tpm": "An Income Tax Kai Credit worth up to eight weeks of food a year for people earning $60,000 or less (about $2.8b of a $3.1b plan), an end to removing Māori children from their whānau in favour of whānau-led care, and welfare that does not penalise poverty."
+      }
+    },
+    {
+      "id": "drugs",
+      "label": "Alcohol, drugs and cannabis",
+      "keywords": ["drugs", "cannabis", "alcohol", "smoking", "vaping", "tobacco", "addiction", "decriminalise", "drug testing"],
+      "parties": {
+        "nat": "Random drug testing of Jobseeker recipients starting at 10,000 tests a year, with a second failed test triggering an assessment. Opposes cannabis legalisation (campaigned No in 2020) and supports medicinal cannabis through standard medical approvals.",
+        "lab": "Reinstate the Smokefree Generation policy, reverse the 50% excise cut on heated tobacco and introduce a licensing regime for tobacco and vape products. Supportive of revising the Sale and Supply of Alcohol Act but opposed to raising alcohol taxes; no cannabis policy published.",
+        "grn": "Repeal and replace the Misuse of Drugs Act with legal regulation of cannabis and a health-based approach to drug use; a minimum price on alcohol and an alcohol tax scaled to pure alcohol content; backs the Drug Overdose (Assistance Protection) Bill protecting people who call 111 during an overdose.",
+        "act": "Supports personal choice and regulatory reform including faster medicinal cannabis approvals, while keeping a law-and-order stance on recreational drug offences; its Jobseeker payment card would block alcohol, tobacco and gambling purchases.",
+        "nzf": "No published 2026 policy found.",
+        "top": "Regulate recreational cannabis to undercut organised crime and reduce youth incarceration, expand the Alcohol and Other Drug Treatment Court, and set a credible pathway to a smokefree New Zealand.",
+        "tpm": "Decriminalise drug use, wipe criminal convictions for drug use and possession, and overhaul the Misuse of Drugs Act so drug use is treated as a health issue with health-based addiction responses."
+      }
+    },
+    {
+      "id": "firearms",
+      "label": "Firearms",
+      "keywords": ["firearms", "guns", "gun registry", "arms act", "hunting", "licensing", "semi-automatic"],
+      "parties": {
+        "nat": "Its Arms Act 2026, in force from 23 September 2026, keeps the firearms registry and the ban on military-style semi-automatics; supports the registry provided it is effective and protects owners' data, and wants licence safety training 'as widely accessible as possible'.",
+        "lab": "No standalone 2026 firearms policy. Labour legislated the registry in 2020 and police spokesperson Ginny Andersen has said it is 'working incredibly well'.",
+        "grn": "No published 2026 policy found.",
+        "act": "Campaigns to repeal the firearms registry it has opposed since 2023, building on the Arms Act 2026 rewrite it led, which moves licensing and registration from police to a specialist firearms regulator.",
+        "nzf": "Describes a 'long-held policy of maintenance of sensible firearms laws' and encourages safe use; no 2026 changes proposed.",
+        "top": "No published 2026 policy found.",
+        "tpm": "No published 2026 policy found."
+      }
+    },
+    {
+      "id": "abortion",
+      "label": "Abortion and conscience issues",
+      "keywords": ["abortion", "conscience vote", "pro-life", "pro-choice", "reproductive", "safe areas"],
+      "parties": {
+        "nat": "No published 2026 policy found.",
+        "lab": "No published 2026 policy found.",
+        "grn": "No published 2026 policy found.",
+        "act": "No published 2026 policy found.",
+        "nzf": "Winston Peters says abortion laws are 'settled; there will be no changes under me as prime minister', while reiterating support for legal, safe abortion.",
+        "top": "No published 2026 policy found.",
+        "tpm": "No published 2026 policy found."
+      }
+    },
+    {
+      "id": "euthanasia",
+      "label": "Assisted dying",
+      "keywords": ["euthanasia", "assisted dying", "end of life choice", "terminal illness", "advance directives"],
+      "parties": {
+        "nat": "No published 2026 policy found.",
+        "lab": "No published 2026 policy found.",
+        "grn": "No published 2026 policy found.",
+        "act": "Would support the End of Life Choice Amendment Bill, which removes the six-month prognosis requirement, and introduce an Advance Directives Bill in the next term (August 2026).",
+        "nzf": "No published 2026 policy found.",
+        "top": "No published 2026 policy found.",
+        "tpm": "No published 2026 policy found."
+      }
+    },
+    {
+      "id": "gender",
+      "label": "Gender, sexuality and conscience votes",
+      "keywords": ["gender", "transgender", "trans", "puberty blockers", "rainbow", "lgbt", "takatāpui", "conversion therapy", "sexuality"],
+      "parties": {
+        "nat": "No 2026 campaign policy. In government it restricted new puberty-blocker prescriptions by regulation from December 2025 (not enforced pending a judicial review) and rewrote school sexuality education guidelines.",
+        "lab": "No published 2026 policy found.",
+        "grn": "Opposes restrictions on puberty blockers and supports access to gender-affirming care based on evidence and self-determination; would oppose restricting flags that signal inclusion.",
+        "act": "Supported implementing the Ministry of Health's advice restricting puberty blockers; no further 2026 policy published.",
+        "nzf": "Committed to 'fighting against the use of puberty blockers for children'; Winston Peters said 'I sure hope so' when asked about revisiting the conversion-practices law but has not made that party policy.",
+        "top": "No published 2026 policy found.",
+        "tpm": "'Mana Takatāpui': an independent Takatāpui Commission funded at about $200m ($66m a year) to deliver Whānau Ora-style services for takatāpui and rainbow communities, and guaranteed gender-affirming care including access to puberty blockers in the public system."
+      }
+    },
+    {
+      "id": "media",
+      "label": "Media, broadcasting and tech",
+      "keywords": ["media", "broadcasting", "rnz", "tvnz", "social media", "under 16", "online safety", "streaming", "journalism", "nz on air"],
+      "parties": {
+        "nat": "Introduced the Online Safety (Minimum Age and Child Safety Risk Assessment) Bill requiring high-risk platforms to keep under-16s off social media, which will not reach a first reading before Parliament dissolves; rules out a streaming tax; light-touch approach to AI.",
+        "lab": "An independent online safety regulator and a copyright framework so creators are paid when AI uses their work; supports the under-16 social media bill to first reading but says an age ban alone is insufficient without 'safety by design' duties on platforms. No streaming levy.",
+        "grn": "Opposes the under-16 social media ban as 'simplistic' and harmful to LGBTQ+ and disabled youth; media policy backs RNZ, TVNZ and NZ On Air and a 'Digital Media Commons' for public, community and web media.",
+        "act": "Opposes the under-16 social media ban as 'hasty and unworkable' and opposes requiring New Zealanders to give ID to social media companies.",
+        "nzf": "Opposes National's under-16 social media ban in its current form, citing a 'slippery slope', while backing child-protection measures with full parliamentary scrutiny; no broadcasting policy published.",
+        "top": "Has a 'Digital Future' policy; has taken no position on the under-16 social media ban.",
+        "tpm": "An independent Māori arts body funded to match Creative New Zealand and a scheme paying 1,000 artists for 30 hours a week over two years; no position taken on the social media ban."
+      }
+    },
+    {
+      "id": "privacy",
+      "label": "Privacy, surveillance and AI",
+      "keywords": ["privacy", "ai", "artificial intelligence", "data", "surveillance", "data centres", "facial recognition", "algorithms"],
+      "parties": {
+        "nat": "A light-touch approach to AI regulation citing GDP gains; no privacy-specific 2026 policy published.",
+        "lab": "An Office of AI inside the Department of the Prime Minister and Cabinet, data privacy standards aligned with Australia, copyright rules for AI use of creators' work, an AI small business fund and a requirement that large data centres pay their own power and water costs.",
+        "grn": "Regulate AI 'for the public good': consent required before personal data is used to train AI, no major public or welfare decisions made by machines alone, workers get a say before workplaces adopt AI, a one-year moratorium on consents for new large data centres, and bigger Privacy Commissioner fines for serious breaches.",
+        "act": "A 'fast follower' stance adopting overseas AI rules with targeted, disclosure-based regulation; wants the public service to adopt AI faster; opposes requiring ID for social media access.",
+        "nzf": "No published 2026 policy found.",
+        "top": "No published 2026 policy found.",
+        "tpm": "No published 2026 policy found."
+      }
+    },
+    {
+      "id": "housing2",
+      "label": "Renters, landlords and interest deductibility detail",
+      "keywords": ["housing", "renters", "rent", "landlords", "interest deductibility", "bright-line", "first home", "social housing", "state houses", "rent cap"],
+      "parties": {
+        "nat": "Keeps restored interest deductibility and the two-year bright-line test. First Home Loan: 5% deposits with the income cap lifted to $300,000 for singles and couples (from $95,000 and $150,000), about $4m-$6m a year. Councils could again require car parks in new subdivisions.",
+        "lab": "Rules out changing interest deductibility (locked in 21 September). A 28% capital gains tax on investment property sold after 1 July 2027, and at least 6,000 extra social housing places over four years with $2.9b for Kāinga Ora to build again. Chris Hipkins has called the accommodation supplement a 'subsidy for private landlords'.",
+        "grn": "Cap rent increases at 2% a year through a Renters' Rights Bill, end no-cause evictions, introduce a rental warrant of fitness and a national register of landlords and property managers, repeal interest deductibility ($2.9b) and restore the 10-year bright-line test, and build 40,000 state houses within five years.",
+        "act": "Let landlords offset rental losses against other income again (costed at $264m in year one, $303m in year four), take councils out of building consents and give them 50% of GST on new homes; opposes a capital gains tax and a wealth tax.",
+        "nzf": "Fast-tracked housing approved only once roads, water and wastewater are funded and deliverable, with listings that have not applied by end-2028 losing their place (14 October); no renter or landlord tax policy published.",
+        "top": "A land value tax of 1.75% on urban and 0.5% on rural land applying to all homes including owner-occupied, which its modelling says could lower house prices 10-15% over time, offset by the $19,400 citizen's income; simpler zoning, support for prefabricated building and underwriting of affordable projects.",
+        "tpm": "A 5% stamp duty on residential purchases (first homes under $1m exempt), land-banking and vacant-house taxes, more public and affordable homes and easier building on Māori land; no detailed housing policy released as at mid-October."
+      }
+    },
+    {
+      "id": "climate",
+      "label": "Emissions targets and ETS detail",
+      "keywords": ["climate", "emissions", "ets", "carbon", "net zero", "paris agreement", "zero carbon act", "climate commission", "adaptation", "methane"],
+      "parties": {
+        "nat": "Stay in the Paris Agreement (a coalition bottom line) and keep agriculture out of the ETS; no ETS changes announced. Passed a law (67-53, 18 August) barring climate-harm lawsuits against companies.",
+        "lab": "An urgent review of the ETS, saying the carbon price is too low but naming no new price; reinstate the offshore oil and gas exploration ban; no pricing of agricultural emissions and no revival of the high-emissions vehicle fee; climate change returned to the Years 0-10 curriculum.",
+        "grn": "The only standalone climate platform this election: rapidly phase out fossil fuels and make big polluters pay, reinstate the offshore oil and gas ban with existing permits revoked, keep courts open for climate cases and build renewables through a state power company. No numerical 2026 target or ETS price published.",
+        "act": "Scrap the net zero target, repeal the Zero Carbon Act, cut the carbon tax with refunds for certain businesses, disestablish the Climate Change Commission and ease farm methane rules; keep climate rules with Parliament, not judges.",
+        "nzf": "Leave the Paris Agreement and send no money offshore for it, keep climate disputes out of the courts, and expand mining and oil and gas.",
+        "top": "Keep the Climate Change Commission (an election bottom line), a climate adaptation law designed to survive changes of government, $5b for adaptation, a methane cap-and-trade scheme priced by the Commission, and national rules sharing costs when insurers withdraw from flood and coastal areas.",
+        "tpm": "No standalone 2026 climate manifesto; would ban seabed mining, protect whenua and moana from extractive industries, fund climate resilience for at-risk communities, withdraw oil and gas permits within five years and keep courts open for climate cases."
+      }
+    },
+    {
+      "id": "health2",
+      "label": "GP access, Pharmac and hospital funding detail",
+      "keywords": ["health", "gp", "doctor", "pharmac", "medicines", "hospitals", "nurses", "prescriptions", "screening", "waitlists"],
+      "parties": {
+        "nat": "$604m more for the medicines budget funded by a 10% cut to aid outside the Pacific; free cervical screening from March 2027 for ages 25-69, free bowel screening from age 50 by 2029, breast screening extended to 74 by 2029, and prostate and lung screening pilots.",
+        "lab": "A Medicard giving three free GP visits a year (about $550m, funded by its capital gains tax), free prescriptions from 1 July 2027 ($74.5m a year), free cervical screening from 1 October 2027, free maternity scans from July 2028, a Family Doctor Loan Scheme from 1 July 2027 it says adds 4.5 million GP visits, a job guarantee for graduate nurses ($525m) and clearing the hospital repair backlog.",
+        "grn": "Unlimited free GP visits and free dental for everyone funded by its wealth tax, moving privately funded GP, dental, aged care and ambulance services into public ownership, and significantly more Pharmac funding.",
+        "act": "Lift Pharmac's share of health spending by one percentage point a year from 4.9% to 12% by 2033, build a national cancer centre with Auckland and Christchurch campuses (about $2b, using private money and donations with the donation tax credit cap removed), let pharmacists treat more conditions and add 24-hour prescription lockers.",
+        "nzf": "'Make NZ Healthy' (20 September) shifts the system toward prevention and metabolic health: nutrition in the curriculum, a review of food guidelines, a vitamin D review and hospital trials of intravenous vitamin C around surgery.",
+        "top": "A cross-party 10-year Health Plan lifting health spending from 7.4% to 9% of GDP with a larger share for primary and community care, restoring the school lunch programme, a smokefree pathway and a lobbying register for industries that profit from illness.",
+        "tpm": "Rebuild a Māori-led health authority (Te Aka Whai Ora) focused on prevention and cultural safety, with stable multi-year funding for kaupapa Māori and iwi-led providers."
+      }
+    },
+    {
+      "id": "education2",
+      "label": "Schools, NCEA and school lunches detail",
+      "keywords": ["schools", "ncea", "school lunches", "curriculum", "teachers", "uniforms", "classrooms", "truancy", "education", "kura"],
+      "parties": {
+        "nat": "Replace NCEA, spend $451.8m to keep the current school lunch programme to the next election, require students to stay until the end of Year 11 or age 16, move to common term dates, put walls back in open-plan classrooms, set tight screen limits in Years 1-3 with paper-based writing checks, and fund $23m for 20 specialist classrooms and three specialist schools.",
+        "lab": "Return school lunches to school kitchens, iwi and hapū or local caterers at $5 a meal ($6.50 for Years 9-13) from Term 1 2028, covering 1,014 schools and 244,400 students; a uniform cost law by Term 1 2028; pause unfinished curriculum and NCEA changes for a year; restore 43 rural bus routes and Treaty duties on school boards.",
+        "grn": "Bring back the previous lunch model at about $6.50 a meal and expand it to about 400 more schools (around 150,000 more children), restore the teacher-training scheme cut in 2024, add climate change to the curriculum before senior years and boost te reo Māori teacher funding.",
+        "act": "Let teachers use reasonable force to remove seriously disruptive students, cap compulsory branded uniform items at three with plain alternatives allowed, keep the cheaper lunch model, and give Year 11 students $500 in an investment account.",
+        "nzf": "Embed nutrition in the New Zealand Curriculum and review the national food guidelines; no NCEA or lunch policy published.",
+        "top": "A cross-party 10-year education plan locked in so future governments cannot scrap it, with an independent council rather than ministers setting the curriculum; restore climate change to the curriculum and restore the school lunch programme.",
+        "tpm": "A Māori Education Authority, $1.25b over five years for kura buildings, te reo Māori as a core subject to Year 10, expanded school lunches, free student public transport, free school counselling and $30m a year for Te Ahu o te Reo Māori."
+      }
+    }
+  ]
+}
