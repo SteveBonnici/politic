@@ -217,19 +217,6 @@ mark{background:var(--warn);color:#fff;padding:0 2px;border-radius:2px}
         </div>
       </section>
 
-      <section class="panel" aria-labelledby="h-elec">
-        <div class="head">
-          <h2 id="h-elec">4. Your electorate</h2>
-          <p class="small">You get two votes. Your <b>party vote</b> decides how many seats each party gets, so it is what this tool scores. Your <b>electorate vote</b> picks your local MP. Pick your electorate to see who is standing and where each vote does the most.</p>
-        </div>
-        <div class="checks">
-          <label><input type="checkbox" id="maoriRoll"> I'm on the Māori roll</label>
-        </div>
-        <div class="f"><label for="elec">Electorate</label><select id="elec"><option value="">Loading electorates…</option></select></div>
-        <p class="small">Not sure which electorate you're in? Check at <a href="https://vote.nz" target="_blank" rel="noopener">vote.nz</a>.</p>
-        <div id="elecOut"></div>
-      </section>
-
     </div>
 
     <!-- RESULTS -->
@@ -242,6 +229,18 @@ mark{background:var(--warn);color:#fff;padding:0 2px;border-radius:2px}
           <p class="small">Weighted fit with your priorities. Tap a party for its policies and your tax breakdown. Tax figures are the change per year against today's rules.</p>
         </div>
         <div class="rank" id="rank"></div>
+      </section>
+      <section class="panel" aria-labelledby="h-elec">
+        <div class="head">
+          <h2 id="h-elec">Your electorate</h2>
+          <p class="small">You get two votes. Your <b>party vote</b> decides how many seats each party gets, so it is what this tool scores. Your <b>electorate vote</b> picks your local MP. Pick your electorate to see who is standing and where each vote does the most.</p>
+        </div>
+        <div class="checks">
+          <label><input type="checkbox" id="maoriRoll"> I'm on the Māori roll</label>
+        </div>
+        <div class="f"><label for="elec">Electorate</label><select id="elec"><option value="">Loading electorates…</option></select></div>
+        <p class="small">Not sure which electorate you're in? Check at <a href="https://vote.nz" target="_blank" rel="noopener">vote.nz</a>.</p>
+        <div id="elecOut"></div>
       </section>
 
       <section class="panel" aria-labelledby="h-gov">
